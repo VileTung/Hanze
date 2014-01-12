@@ -65,7 +65,9 @@ var
   positie: integer;
 begin
 
+  //Standaard waardes
   positie := 0;
+  resultaat:='';
 
   for C in regel do
   begin

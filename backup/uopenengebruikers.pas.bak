@@ -38,7 +38,7 @@ begin
     //Kijken of dit de juiste gebruiker is
     if (gebruikerSplitsen(bestandGebruiker, 0) = gebruiker) then
     begin
-      if (gebruikerSplitsen(bestandGebruiker, 1) = wachtwoord) or (Zoeken = False) then
+      if (gebruikerSplitsen(bestandGebruiker, 1) = wachtwoord) or (Zoeken = True) then
       begin
         return := 'true';
         break;
