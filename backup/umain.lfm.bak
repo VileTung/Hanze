@@ -1,0 +1,103 @@
+object MainFrm: TMainFrm
+  Left = 1034
+  Height = 256
+  Top = 136
+  Width = 320
+  Caption = 'Bankbeveiliging'
+  ClientHeight = 236
+  ClientWidth = 320
+  Menu = HoofdMenu
+  OnCreate = FormCreate
+  LCLVersion = '1.0.12.0'
+  object Lbl_Status: TLabel
+    Left = 8
+    Height = 16
+    Top = 160
+    Width = 44
+    Caption = 'Status: ?'
+    ParentColor = False
+  end
+  object Memo_Log: TMemo
+    Left = 8
+    Height = 90
+    Top = 8
+    Width = 304
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 213
+    Width = 320
+    Panels = <    
+      item
+        Text = 'Status: Onbekend'
+        Width = 150
+      end    
+      item
+        Text = 'Ingelogd: Nee'
+        Width = 150
+      end>
+    SimplePanel = False
+    SizeGrip = False
+  end
+  object SdpoSerial: TSdpoSerial
+    Active = False
+    BaudRate = br115200
+    DataBits = db8bits
+    Parity = pNone
+    FlowControl = fcNone
+    StopBits = sbOne
+    Device = 'COM1'
+    OnRxData = SdpoSerialRxData
+    left = 272
+    top = 192
+  end
+  object Timer_HeartBeat: TTimer
+    Interval = 50000
+    OnTimer = Timer_HeartBeatTimer
+    left = 272
+    top = 136
+  end
+  object HoofdMenu: TMainMenu
+    left = 272
+    top = 88
+    object Menu_Menu: TMenuItem
+      Caption = 'Menu'
+      object Menu_Aanmelden: TMenuItem
+        Caption = 'Aanmelden'
+        OnClick = Menu_AanmeldenClick
+      end
+      object Menu_Afmelden: TMenuItem
+        Caption = 'Afmelden'
+        Visible = False
+        OnClick = Menu_AfmeldenClick
+      end
+      object Menu_Sluiten: TMenuItem
+        Caption = 'Sluiten'
+        OnClick = Menu_SluitenClick
+      end
+    end
+    object Menu_Gebruikers: TMenuItem
+      Caption = 'Gebruikers'
+      Visible = False
+      object Menu_Toevoegen: TMenuItem
+        Caption = 'Toevoegen'
+        OnClick = Menu_ToevoegenClick
+      end
+      object Menu_Wijzigen: TMenuItem
+        Caption = 'Wijzigen'
+        OnClick = Menu_WijzigenClick
+      end
+    end
+  end
+  object Timer_SleutelSchakelaar: TTimer
+    Enabled = False
+    Interval = 60000
+    OnTimer = Timer_SleutelSchakelaarTimer
+    left = 272
+    top = 48
+  end
+end

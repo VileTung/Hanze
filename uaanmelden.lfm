@@ -1,0 +1,63 @@
+object AanmeldenFrm: TAanmeldenFrm
+  Left = 1035
+  Height = 121
+  Top = 436
+  Width = 234
+  BorderStyle = bsDialog
+  Caption = 'Aanmelden'
+  ClientHeight = 121
+  ClientWidth = 234
+  LCLVersion = '1.0.12.0'
+  object Edit_Gebruikersnaam: TEdit
+    Left = 89
+    Height = 23
+    Top = 8
+    Width = 136
+    MaxLength = 50
+    TabOrder = 0
+  end
+  object Lbl_Gebruikersnaam: TLabel
+    Left = 25
+    Height = 16
+    Top = 15
+    Width = 55
+    Caption = 'Gebruiker:'
+    ParentColor = False
+  end
+  object Edit_Wachtwoord: TEdit
+    Left = 89
+    Height = 23
+    Top = 36
+    Width = 136
+    EchoMode = emPassword
+    MaxLength = 50
+    PasswordChar = '*'
+    TabOrder = 1
+  end
+  object Lbl_Wachtwoord: TLabel
+    Left = 8
+    Height = 16
+    Top = 43
+    Width = 72
+    Caption = 'Wachtwoord:'
+    ParentColor = False
+  end
+  object Btn_Aanmelden: TButton
+    Left = 8
+    Height = 25
+    Top = 88
+    Width = 219
+    Caption = 'Aanmelden'
+    Enabled = False
+    OnClick = Btn_AanmeldenClick
+    TabOrder = 2
+  end
+  object Label1: TLabel
+    Left = 64
+    Height = 16
+    Top = 64
+    Width = 112
+    Caption = 'Sleutelschakelaar: Uit'
+    ParentColor = False
+  end
+end
