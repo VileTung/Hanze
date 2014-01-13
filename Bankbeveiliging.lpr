@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, sdposeriallaz, uMain, uArduinoConnect, uAanmelden, uOpenenGebruikers,
-  uIngelogd, uGebruikers, uGebruikerToevoegen
+  uIngelogd, uGebruikers, uGebruikerToevoegen, uOpslaanGebruikers
   { you can add units after this };
 
 {$R *.res}

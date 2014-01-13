@@ -48,7 +48,6 @@ object GebruikerToevoegenFrm: TGebruikerToevoegenFrm
     Top = 72
     Width = 219
     Caption = 'Toevoegen'
-    Enabled = False
     OnClick = Btn_GebruikerToevoegenClick
     TabOrder = 2
   end

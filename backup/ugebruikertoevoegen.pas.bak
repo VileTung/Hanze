@@ -5,7 +5,8 @@ unit uGebruikerToevoegen;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, uOpenenGebruikers, uOpslaanGebruikers;
 
 type
 
@@ -40,10 +41,27 @@ begin
   if (OpenenGebruiker('C:\Users\Kevin\Desktop\testje', Edit_Gebruikersnaam.Text,
     '', True) = 'true') then
   begin
+    ShowMessage('De gekozen gebruikersnaam is al in gebruik. Kies een andere kiest.');
+  end
+  else
+  begin
+    //Kijken of wachtwoord lang genoeg is
+    if (length(Edit_Wachtwoord.Text) < 10) then
+    begin
+      ShowMessage('Het gekozen wachtwoord is te kort!');
+    end
+    //En hier gaan we de gebruiker toevoegen aan ons bestand
+    else
+    begin
 
+      uOpslaanGebruikers.OpslaanGebruiker('C:\Users\Kevin\Desktop\testje',
+        Edit_Gebruikersnaam.Text,
+        Edit_Wachtwoord.Text);
+
+      ShowMessage('De gebruiker "' + Edit_Gebruikersnaam.Text + '" is toegevoegd!');
+    end;
   end;
 
 end;
 
 end.
-
