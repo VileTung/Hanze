@@ -12,7 +12,7 @@ object GebruikersFrm: TGebruikersFrm
   object Memo_Lijst: TMemo
     Left = 8
     Height = 162
-    Top = 72
+    Top = 48
     Width = 304
     ReadOnly = True
     TabOrder = 0

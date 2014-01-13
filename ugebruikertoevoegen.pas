@@ -54,10 +54,23 @@ begin
     else
     begin
 
-      uOpslaanGebruikers.OpslaanGebruiker('C:\Users\Kevin\Desktop\testje',
-        Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text);
+      //Eerst kijken of we al 5 gebruikers hebben
+      if (GebruikersTellen('C:\Users\Kevin\Desktop\testje') >= 5) then
+      begin
+        ShowMessage('Het is niet mogelijk om meer gebruikers toe te voegen aan het syteem!');
+      end
+      else
+      begin
+        //Gebruiker toevoegen aan bestand
+        uOpslaanGebruikers.OpslaanGebruiker('C:\Users\Kevin\Desktop\testje',
+          Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text);
 
-      ShowMessage('De gebruiker "' + Edit_Gebruikersnaam.Text + '" is toegevoegd!');
+        //Melding weergeven
+        ShowMessage('De gebruiker "' + Edit_Gebruikersnaam.Text + '" is toegevoegd!');
+      end;
+
+      //Form sluiten
+      GebruikerToevoegenFrm.Close();
     end;
   end;
 

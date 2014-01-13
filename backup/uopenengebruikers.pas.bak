@@ -10,8 +10,11 @@ uses
 function OpenenGebruiker(bestandsLocatie: string; gebruiker: string;
   wachtwoord: string; Zoeken: boolean): string;
 function gebruikerSplitsen(regel: string; variabel: integer): string;
+function GebruikersTellen(bestandsLocatie: string): integer;
 
 implementation
+
+uses uMain;
 
 function OpenenGebruiker(bestandsLocatie: string; gebruiker: string;
   wachtwoord: string; Zoeken: boolean): string;
@@ -40,6 +43,13 @@ begin
     begin
       if (gebruikerSplitsen(bestandGebruiker, 1) = wachtwoord) or (Zoeken = True) then
       begin
+
+        //Kijken of het een Systeembeheerder is
+        if (gebruikerSplitsen(bestandGebruiker, 2) = '1') then
+        begin
+          uMain.SysteemBeheerder := True;
+        end;
+
         return := 'true';
         break;
       end
@@ -58,6 +68,33 @@ begin
 
 end;
 
+function GebruikersTellen(bestandsLocatie: string): integer;
+var
+  bestand: TextFile; //Bestands pointer
+  rijen: integer;
+begin
+
+  //Standaard
+  rijen := 0;
+
+  AssignFile(bestand, bestandsLocatie);
+
+  reset(bestand);
+
+  while not EOF(bestand) do
+  begin
+    ReadLn();
+    rijen += 1;
+  end;
+
+  //Bestand afsluiten, zeer belangrijk
+  CloseFile(bestand);
+
+  //Waarde terug sturen
+  Result := rijen;
+
+end;
+
 function gebruikerSplitsen(regel: string; variabel: integer): string;
 var
   C: char;
@@ -65,7 +102,9 @@ var
   positie: integer;
 begin
 
+  //Standaard waardes
   positie := 0;
+  resultaat := '';
 
   for C in regel do
   begin

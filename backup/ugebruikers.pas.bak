@@ -16,8 +16,8 @@ type
     MainMenu_Gebruikers: TMainMenu;
     Memo_Lijst: TMemo;
     MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
+    MenuWijzigen: TMenuItem;
+    MenuVerwijderen: TMenuItem;
   private
     { private declarations }
   public

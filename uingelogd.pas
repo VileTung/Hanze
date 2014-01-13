@@ -21,10 +21,16 @@ begin
   uMain.Ingelogd := Gebruiker;
   MainFrm.StatusBar.Panels.Items[1].Text := 'Ingelogd: ' + Gebruiker;
 
-  //Menu
-  MainFrm.Menu_Gebruikers.Visible := True;
+  //Menu - Alleen als het een Systeembeheerder is
+  if (uMain.SysteemBeheerder = True) then
+  begin
+    MainFrm.Menu_Gebruikers.Visible := True;
+  end;
+
+  //Menu - Restant
   MainFrm.Menu_Aanmelden.Visible := False;
   MainFrm.Menu_Afmelden.Visible := True;
+
 end;
 
 procedure gebruikerUitgelogd();
@@ -34,8 +40,13 @@ begin
   uMain.Ingelogd := '';
   MainFrm.StatusBar.Panels.Items[1].Text := 'Ingelogd: Nee';
 
-  //Menu
-  MainFrm.Menu_Gebruikers.Visible := False;
+  //Menu - Alleen als het een Systeembeheerder is
+  if (uMain.SysteemBeheerder = True) then
+  begin
+    MainFrm.Menu_Gebruikers.Visible := False;
+  end;
+
+  //Menu - Restant
   MainFrm.Menu_Aanmelden.Visible := True;
   MainFrm.Menu_Afmelden.Visible := False;
 end;

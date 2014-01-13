@@ -49,6 +49,7 @@ var
   Status: boolean;
   Ingelogd: string;
   Sleutel: boolean;
+  SysteemBeheerder: boolean;
 
 implementation
 
@@ -61,6 +62,7 @@ begin
 
   //Standaard is er niemand ingelogd
   Ingelogd := '';
+  SysteemBeheerder := False;
 
   //Als het goed gaat krijgen we de COM-poort terug
   ComPoort := verbinden(SdpoSerial);
@@ -189,6 +191,9 @@ end;
 
 procedure TMainFrm.Menu_WijzigenClick(Sender: TObject);
 begin
+
+
+
   //Gebruiker wijzigen/verwijderen scherm laten zien
   GebruikersFrm.Show();
 end;

@@ -38,7 +38,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="Bankbeveiliging.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -91,6 +91,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uGebruikerToevoegen"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="uopslaangebruikers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uOpslaanGebruikers"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
