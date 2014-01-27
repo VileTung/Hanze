@@ -41,8 +41,8 @@ uses uMain;
 procedure TAanmeldenFrm.Btn_AanmeldenClick(Sender: TObject);
 begin
   //Met behulp van een document waar de inloggegevens instaan, gaan we proberen in te loggen!
-  if (OpenenGebruiker('C:\Users\Kevin\Desktop\testje', Edit_Gebruikersnaam.Text,
-    Edit_Wachtwoord.Text, False) = 'true') then
+  if (OpenenGebruiker(ExtractFilePath(Application.ExeName) + 'gebruikers',
+    Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text, False) = 'true') then
   begin
     //Aangegeven dat ingelog gelukt is
     ShowMessage('Succesvol ingelogd, we gaan over enkele seconden verder.');

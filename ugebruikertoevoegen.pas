@@ -38,8 +38,8 @@ procedure TGebruikerToevoegenFrm.Btn_GebruikerToevoegenClick(Sender: TObject);
 begin
 
   //We gaan kijken of deze gebruiker al bestaat
-  if (OpenenGebruiker('C:\Users\Kevin\Desktop\testje', Edit_Gebruikersnaam.Text,
-    '', True) = 'true') then
+  if (OpenenGebruiker(ExtractFilePath(Application.ExeName) + 'gebruikers',
+    Edit_Gebruikersnaam.Text, '', True) = 'true') then
   begin
     ShowMessage('De gekozen gebruikersnaam is al in gebruik. Kies een andere kiest.');
   end
@@ -55,14 +55,16 @@ begin
     begin
 
       //Eerst kijken of we al 5 gebruikers hebben
-      if (GebruikersTellen('C:\Users\Kevin\Desktop\testje') >= 5) then
+      if (GebruikersTellen(ExtractFilePath(Application.ExeName) +
+        'gebruikers') >= 5) then
       begin
         ShowMessage('Het is niet mogelijk om meer gebruikers toe te voegen aan het syteem!');
       end
       else
       begin
         //Gebruiker toevoegen aan bestand
-        uOpslaanGebruikers.OpslaanGebruiker('C:\Users\Kevin\Desktop\testje',
+        uOpslaanGebruikers.OpslaanGebruiker(ExtractFilePath(Application.ExeName) +
+          'gebruikers',
           Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text);
 
         //Melding weergeven

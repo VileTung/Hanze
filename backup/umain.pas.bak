@@ -14,6 +14,8 @@ type
   { TMainFrm }
 
   TMainFrm = class(TForm)
+    Btn_Activeren: TButton;
+    Btn_Deactiveren: TButton;
     HoofdMenu: TMainMenu;
     Memo_Log: TMemo;
     Menu_Afmelden: TMenuItem;
@@ -27,6 +29,8 @@ type
     StatusBar: TStatusBar;
     Timer_HeartBeat: TTimer;
     Timer_SleutelSchakelaar: TTimer;
+    procedure Btn_ActiverenClick(Sender: TObject);
+    procedure Btn_DeactiverenClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Menu_AanmeldenClick(Sender: TObject);
     procedure Menu_AfmeldenClick(Sender: TObject);
@@ -59,6 +63,8 @@ implementation
 procedure TMainFrm.FormCreate(Sender: TObject);
 begin
 
+  showmessage(ExtractFilePath(Application.ExeName));
+
   //Standaard is er niemand ingelogd
   Ingelogd := '';
   SysteemBeheerder := False;
@@ -81,52 +87,70 @@ begin
 
 end;
 
+procedure TMainFrm.Btn_ActiverenClick(Sender: TObject);
+begin
+  //Het systeem actieveren
+  //Stuur: Sl;minuut;uur;dag;ja(ar)
+  SdpoSerial.WriteData('Sl;01;02;03;92');
+end;
+
+procedure TMainFrm.Btn_DeactiverenClick(Sender: TObject);
+begin
+  //Het systeem de-activeren
+end;
+
 procedure TMainFrm.SdpoSerialRxData(Sender: TObject);
 var
   i: integer;
-  s, s1: string;
+  serial, waarde: string;
 begin
 
-  s := '';
+  serial := '';
+  waarde := '';
+
   for i := 1 to 20000 do
   begin
-    s := SdpoSerial.ReadData;
-    if s <> '' then
+
+    serial := SdpoSerial.ReadData;
+
+    if serial <> '' then
     begin
-      s1 := s1 + s;
+      waarde := waarde + serial;
     end;
 
-  end; //for
-  Memo_Log.Lines.Add(s1);
+  end;
 
-  case s1 of
-    'Verbonden'#13#10:
+  //Memo_Log.Lines.Add(s1);
+
+  case (waarde[1] + waarde[2]) of
+    'Vb': //Verbonden
     begin
       Status := True;
 
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'We zijn verbonden';
     end;
-    'Actief'#13#10:
+    'Ac': //Actief
     begin
       Status := True;
 
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'We zijn nog steeds verbonden';
     end;
-    'Sleutel'#13#10:
+    'Sl': //Sleutelschakelaar
     begin
       //Timer starten, gebruiker heeft 60 seconden
       Timer_SleutelSchakelaar.Enabled := True;
-
-      //Variabel voor aanmeld form
-      Sleutel := True;
 
       //Knop actief maken
       AanmeldenFrm.Btn_Aanmelden.Enabled := True;
 
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'Sleutelschakelaar';
+    end;
+    'Al': //Alarm
+    begin
+      //Hier gaan we de alarmen behandelen
     end;
     else
     //Er is iets verkeerd gegaan?
@@ -150,7 +174,7 @@ begin
     SdpoSerial.Active := False;
 
     //Status weergeven
-    StatusBar.Panels.Items[0].Text := 'GEEN VERBINDING!!';
+    StatusBar.Panels.Items[0].Text := 'Verbinding verbroken!';
 
     //Opnieuw verbinding maken
     verbinden(SdpoSerial);
@@ -163,7 +187,7 @@ begin
 
   ShowMessage('60 secjes voorbij, stille alarm, of gewone alarm gaat nu :)');
 
-  timer_Sleutelschakelaar.Enabled := False;
+  Timer_Sleutelschakelaar.Enabled := False;
 
 end;
 

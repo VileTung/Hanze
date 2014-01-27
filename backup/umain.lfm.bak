@@ -11,7 +11,7 @@ object MainFrm: TMainFrm
   LCLVersion = '1.0.12.0'
   object Memo_Log: TMemo
     Left = 8
-    Height = 90
+    Height = 170
     Top = 8
     Width = 304
     Enabled = False
@@ -35,6 +35,26 @@ object MainFrm: TMainFrm
       end>
     SimplePanel = False
     SizeGrip = False
+  end
+  object Btn_Activeren: TButton
+    Left = 8
+    Height = 25
+    Top = 184
+    Width = 152
+    Caption = 'Systeem activeren'
+    Enabled = False
+    OnClick = Btn_ActiverenClick
+    TabOrder = 2
+  end
+  object Btn_Deactiveren: TButton
+    Left = 160
+    Height = 25
+    Top = 184
+    Width = 152
+    Caption = 'Systeem deactiveren'
+    Enabled = False
+    OnClick = Btn_DeactiverenClick
+    TabOrder = 3
   end
   object SdpoSerial: TSdpoSerial
     Active = False

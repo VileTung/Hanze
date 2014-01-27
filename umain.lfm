@@ -42,6 +42,8 @@ object MainFrm: TMainFrm
     Top = 184
     Width = 152
     Caption = 'Systeem activeren'
+    Enabled = False
+    OnClick = Btn_ActiverenClick
     TabOrder = 2
   end
   object Btn_Deactiveren: TButton
@@ -50,6 +52,8 @@ object MainFrm: TMainFrm
     Top = 184
     Width = 152
     Caption = 'Systeem deactiveren'
+    Enabled = False
+    OnClick = Btn_DeactiverenClick
     TabOrder = 3
   end
   object SdpoSerial: TSdpoSerial

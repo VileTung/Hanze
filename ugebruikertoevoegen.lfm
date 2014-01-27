@@ -1,7 +1,7 @@
 object GebruikerToevoegenFrm: TGebruikerToevoegenFrm
-  Left = 1040
+  Left = 1030
   Height = 105
-  Top = 633
+  Top = 596
   Width = 242
   BorderStyle = bsSingle
   Caption = 'Nieuwe gebruiker'
@@ -12,7 +12,7 @@ object GebruikerToevoegenFrm: TGebruikerToevoegenFrm
     Left = 89
     Height = 23
     Top = 8
-    Width = 136
+    Width = 144
     MaxLength = 50
     TabOrder = 0
   end
@@ -28,7 +28,7 @@ object GebruikerToevoegenFrm: TGebruikerToevoegenFrm
     Left = 89
     Height = 23
     Top = 36
-    Width = 136
+    Width = 144
     EchoMode = emPassword
     MaxLength = 50
     PasswordChar = '*'

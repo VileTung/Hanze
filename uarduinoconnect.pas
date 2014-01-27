@@ -36,7 +36,7 @@ begin
       Sleep(1000); //1 sec
 
       //Bericht sturen naar COM poort
-      Serial.WriteData('1');
+      Serial.WriteData('VB');
 
       break;
     except

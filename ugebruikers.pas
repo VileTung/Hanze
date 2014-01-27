@@ -55,7 +55,7 @@ begin
 
   Memo_Lijst.Clear;
 
-  AssignFile(bestand, 'C:\Users\Kevin\Desktop\testje');
+  AssignFile(bestand, ExtractFilePath(Application.ExeName) + 'gebruikers');
 
   reset(bestand);
 
@@ -168,7 +168,7 @@ var
   i: integer;
 begin
 
-  AssignFile(bestand, 'C:\Users\Kevin\Desktop\testje');
+  AssignFile(bestand, ExtractFilePath(Application.ExeName) + 'gebruikers');
 
   rewrite(bestand);
 

@@ -55,14 +55,16 @@ begin
     begin
 
       //Eerst kijken of we al 5 gebruikers hebben
-      if (GebruikersTellen('C:\Users\Kevin\Desktop\testje') >= 5) then
+      if (GebruikersTellen(ExtractFilePath(Application.ExeName) +
+        'gebruikers') >= 5) then
       begin
         ShowMessage('Het is niet mogelijk om meer gebruikers toe te voegen aan het syteem!');
       end
       else
       begin
         //Gebruiker toevoegen aan bestand
-        uOpslaanGebruikers.OpslaanGebruiker('C:\Users\Kevin\Desktop\testje',
+        uOpslaanGebruikers.OpslaanGebruiker(ExtractFilePath(Application.ExeName) +
+          'gebruikers',
           Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text);
 
         //Melding weergeven
