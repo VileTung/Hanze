@@ -7,20 +7,20 @@ interface
 uses
   Classes, SysUtils;
 
-function OpslaanGebruiker(bestandsLocatie: string; gebruiker: string;
-  wachtwoord: string): string;
+procedure OpslaanGebruiker(bestandsLocatie: string; gebruiker: string;
+  wachtwoord: string);
 
 implementation
 
-function OpslaanGebruiker(bestandsLocatie: string; gebruiker: string;
-  wachtwoord: string): string;
+procedure OpslaanGebruiker(bestandsLocatie: string; gebruiker: string;
+  wachtwoord: string);
 var
   bestand: TextFile;
 begin
 
   AssignFile(bestand, bestandsLocatie);
 
-  //Gebruiker toeveogen aan bestand (dus append)
+  //Gebruiker toevoegen aan bestand (dus append)
   Append(bestand);
 
   WriteLn(bestand, gebruiker + #9 + wachtwoord);

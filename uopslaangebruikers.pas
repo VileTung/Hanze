@@ -20,10 +20,10 @@ begin
 
   AssignFile(bestand, bestandsLocatie);
 
-  //Gebruiker toeveogen aan bestand (dus append)
+  //Gebruiker toevoegen aan bestand (dus append)
   Append(bestand);
 
-  WriteLn(bestand, gebruiker + #9 + wachtwoord);
+  WriteLn(bestand, gebruiker + #9 + wachtwoord + #9 + '0');
 
   CloseFile(bestand);
 

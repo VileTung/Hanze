@@ -72,6 +72,7 @@ function GebruikersTellen(bestandsLocatie: string): integer;
 var
   bestand: TextFile; //Bestands pointer
   rijen: integer;
+  Data: string;
 begin
 
   //Standaard
@@ -83,8 +84,13 @@ begin
 
   while not EOF(bestand) do
   begin
-    ReadLn(bestand);
-    rijen += 1;
+    ReadLn(bestand, Data);
+
+    if (gebruikerSplitsen(Data, 0) <> '') then
+    begin
+      rijen += 1;
+    end;
+
   end;
 
   //Bestand afsluiten, zeer belangrijk
@@ -94,6 +100,7 @@ begin
   Result := rijen;
 
 end;
+
 
 function gebruikerSplitsen(regel: string; variabel: integer): string;
 var
@@ -125,4 +132,5 @@ begin
 end;
 
 end.
+
 

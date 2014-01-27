@@ -14,7 +14,8 @@ type
   { TMainFrm }
 
   TMainFrm = class(TForm)
-    Lbl_Status: TLabel;
+    Btn_Activeren: TButton;
+    Btn_Deactiveren: TButton;
     HoofdMenu: TMainMenu;
     Memo_Log: TMemo;
     Menu_Afmelden: TMenuItem;
@@ -84,29 +85,38 @@ end;
 
 procedure TMainFrm.SdpoSerialRxData(Sender: TObject);
 var
-  test: string;
+  i: integer;
+  s, s1: string;
 begin
 
-  test := SdpoSerial.ReadData;
+  s := '';
+  for i := 1 to 20000 do
+  begin
+    s := SdpoSerial.ReadData;
+    if s <> '' then
+    begin
+      s1 := s1 + s;
+    end;
 
-  Memo_Log.Lines.add(test);
+  end; //for
+  Memo_Log.Lines.Add(s1);
 
-  case test of
-    'Verbonden':
+  case s1 of
+    'Verbonden'#13#10:
     begin
       Status := True;
 
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'We zijn verbonden';
     end;
-    'Actief':
+    'Actief'#13#10:
     begin
       Status := True;
 
       //Status weergeven
-      StatusBar.Panels.Items[0].Text := 'We zijn NOG STEEDS verbonden';
+      StatusBar.Panels.Items[0].Text := 'We zijn nog steeds verbonden';
     end;
-    'Sleutel':
+    'Sleutel'#13#10:
     begin
       //Timer starten, gebruiker heeft 60 seconden
       Timer_SleutelSchakelaar.Enabled := True;
@@ -191,8 +201,6 @@ end;
 
 procedure TMainFrm.Menu_WijzigenClick(Sender: TObject);
 begin
-
-
 
   //Gebruiker wijzigen/verwijderen scherm laten zien
   GebruikersFrm.Show();

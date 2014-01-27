@@ -3,7 +3,6 @@ object GebruikersFrm: TGebruikersFrm
   Height = 240
   Top = 370
   Width = 320
-  BorderStyle = bsDialog
   Caption = 'Gebruikers'
   ClientHeight = 220
   ClientWidth = 320
@@ -11,22 +10,29 @@ object GebruikersFrm: TGebruikersFrm
   LCLVersion = '1.0.12.0'
   object Memo_Lijst: TMemo
     Left = 8
-    Height = 162
-    Top = 72
+    Height = 202
+    Top = 8
     Width = 304
+    Enabled = False
     ReadOnly = True
     TabOrder = 0
   end
   object MainMenu_Gebruikers: TMainMenu
     left = 272
     top = 32
-    object MenuItem1: TMenuItem
+    object MenuItem: TMenuItem
       Caption = 'Gebruikers'
+      object MenuItemLaden: TMenuItem
+        Caption = 'Inladen'
+        OnClick = MenuItemLadenClick
+      end
       object MenuWijzigen: TMenuItem
         Caption = 'Wijzigen'
+        OnClick = MenuWijzigenClick
       end
       object MenuVerwijderen: TMenuItem
         Caption = 'Verwijderen'
+        OnClick = MenuVerwijderenClick
       end
     end
   end

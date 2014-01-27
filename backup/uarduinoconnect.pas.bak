@@ -8,7 +8,6 @@ uses
   Classes, SysUtils, SdpoSerial, ExtCtrls, Dialogs;
 
 function verbinden(Serial: TSdpoSerial): string;
-function verwerken(Data: string; Timer: TTimer): string;
 
 implementation
 
@@ -37,7 +36,7 @@ begin
       Sleep(1000); //1 sec
 
       //Bericht sturen naar COM poort
-      Serial.WriteData('1');
+      Serial.WriteData('HB;01;13;01;02;1992');
 
       break;
     except
@@ -47,27 +46,6 @@ begin
 
   Result := resultaat;
 
-end;
-
-function verwerken(Data: string; Timer: TTimer): string;
-begin
-  case Data of
-    'Verbonden':
-    begin
-      ShowMessage('We zijn verbonden');
-      Timer.Enabled := True;
-    end;
-    'Actief':
-    begin
-
-      //Result := True;
-
-      ShowMessage('We zijn NOG STEEDS verbonden');
-      //Timer.Enabled := True;
-    end;
-    else
-      ShowMessage(Data);
-  end;
 end;
 
 end.

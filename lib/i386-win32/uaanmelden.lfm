@@ -3,7 +3,7 @@ object AanmeldenFrm: TAanmeldenFrm
   Height = 121
   Top = 436
   Width = 234
-  BorderStyle = bsDialog
+  BorderStyle = bsSingle
   Caption = 'Aanmelden'
   ClientHeight = 121
   ClientWidth = 234

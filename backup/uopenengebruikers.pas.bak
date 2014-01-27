@@ -83,8 +83,13 @@ begin
 
   while not EOF(bestand) do
   begin
-    ReadLn();
-    rijen += 1;
+    ReadLn(bestand);
+
+    if (gebruikerSplitsen(bestand, 0) <> '') then
+    begin
+      rijen += 1;
+    end;
+
   end;
 
   //Bestand afsluiten, zeer belangrijk
@@ -94,6 +99,7 @@ begin
   Result := rijen;
 
 end;
+
 
 function gebruikerSplitsen(regel: string; variabel: integer): string;
 var
@@ -125,4 +131,5 @@ begin
 end;
 
 end.
+
 

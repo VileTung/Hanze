@@ -3,7 +3,7 @@ object GebruikerToevoegenFrm: TGebruikerToevoegenFrm
   Height = 105
   Top = 633
   Width = 242
-  BorderStyle = bsDialog
+  BorderStyle = bsSingle
   Caption = 'Nieuwe gebruiker'
   ClientHeight = 105
   ClientWidth = 242

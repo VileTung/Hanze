@@ -42,7 +42,7 @@ procedure TAanmeldenFrm.Btn_AanmeldenClick(Sender: TObject);
 begin
   //Met behulp van een document waar de inloggegevens instaan, gaan we proberen in te loggen!
   if (OpenenGebruiker('C:\Users\Kevin\Desktop\testje', Edit_Gebruikersnaam.Text,
-    Edit_Wachtwoord.Text) = 'true', False) then
+    Edit_Wachtwoord.Text, False) = 'true') then
   begin
     //Aangegeven dat ingelog gelukt is
     ShowMessage('Succesvol ingelogd, we gaan over enkele seconden verder.');
@@ -63,6 +63,9 @@ begin
     //Velden leegmaken
     Edit_Gebruikersnaam.Text := '';
     Edit_Wachtwoord.Text := '';
+
+    //Main form enable'n
+    MainFrm.Enabled := True;
 
     //Form sluiten
     AanmeldenFrm.Close();

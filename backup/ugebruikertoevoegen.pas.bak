@@ -69,8 +69,6 @@ begin
         ShowMessage('De gebruiker "' + Edit_Gebruikersnaam.Text + '" is toegevoegd!');
       end;
 
-
-
       //Form sluiten
       GebruikerToevoegenFrm.Close();
     end;
