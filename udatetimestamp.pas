@@ -8,6 +8,7 @@ uses
   Classes, SysUtils, Dialogs;
 
 function OnzeDateTimeStamp(): string;
+function OnzeDateTimeStampLog(): string;
 
 implementation
 
@@ -18,6 +19,16 @@ begin
 
   Nu := Now;
   Result := FormatDateTime('nn;hh;DD;MM;YY', Nu);
+
+end;
+
+function OnzeDateTimeStampLog(): string;
+var
+  Nu: TDateTime;
+begin
+
+  Nu := Now;
+  Result := FormatDateTime('[DD-MM-YY hh:nn:ss]', Nu);
 
 end;
 

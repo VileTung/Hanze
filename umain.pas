@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Menus, ComCtrls, SdpoSerial, uArduinoConnect, uAanmelden,
-  uIngelogd, uGebruikerToevoegen, uGebruikers, uDateTimeStamp;
+  uIngelogd, uGebruikerToevoegen, uGebruikers, uDateTimeStamp, uSerialReadSplits;
 
 type
 
@@ -18,7 +18,7 @@ type
     Btn_Deactiveren: TButton;
     Btn_Reset: TButton;
     HoofdMenu: TMainMenu;
-    Memo_Log: TMemo;
+    ListBox_Log: TListBox;
     Menu_Afmelden: TMenuItem;
     Menu_Menu: TMenuItem;
     Menu_Gebruikers: TMenuItem;
@@ -55,6 +55,7 @@ var
   Ingelogd: string;
   Sleutel: boolean;
   SysteemBeheerder: boolean;
+  StilleAlarm: boolean;
 
 implementation
 
@@ -68,6 +69,7 @@ begin
   //Standaard is er niemand ingelogd
   Ingelogd := '';
   SysteemBeheerder := False;
+  StilleAlarm := False;
 
   //Als het goed gaat krijgen we de COM-poort terug
   ComPoort := verbinden(SdpoSerial);
@@ -110,7 +112,7 @@ end;
 procedure TMainFrm.SdpoSerialRxData(Sender: TObject);
 var
   i: integer;
-  serial, waarde: string;
+  serial, waarde, test: string;
 begin
 
   serial := '';
@@ -118,22 +120,29 @@ begin
 
   for i := 1 to 20000 do
   begin
-
     serial := SdpoSerial.ReadData;
 
     if serial <> '' then
     begin
       waarde := waarde + serial;
     end;
-
   end;
 
-  Memo_Log.Lines.Add(waarde);
+  test := waarde;
+
+  uSerialReadSplits.serialSplitsen(test);
+
+  //ListBox_Log.Items.Add(waarde);
+
+  //Memo_Log.Lines.Add(waarde); //Debuggen, om te kijken wat we krijgen :)
 
   case (waarde[1] + waarde[2]) of
     'VB': //Verbonden
     begin
       Status := True;
+
+      //Loggen
+      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' Verbonden');
 
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'We zijn verbonden';
@@ -142,22 +151,37 @@ begin
     begin
       Status := True;
 
+      //Loggen
+      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' Heartbeat');
+
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'We zijn nog steeds verbonden';
     end;
     'SL': //Sleutelschakelaar
     begin
-      //Timer starten, gebruiker heeft 60 seconden
-      Timer_SleutelSchakelaar.Enabled := True;
+      //Eerst kijken of we niet al ingelogd zijn
+      if (Ingelogd = '') then
+      begin
+        //Timer starten, gebruiker heeft 60 seconden
+        Timer_SleutelSchakelaar.Enabled := True;
 
-      //Knop actief maken
-      AanmeldenFrm.Btn_Aanmelden.Enabled := True;
+        //Loggen
+        ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+          ' Sleutelschakelaar');
 
-      //Status weergeven
-      StatusBar.Panels.Items[0].Text := 'Sleutelschakelaar';
+        //Knop actief maken
+        AanmeldenFrm.Btn_Aanmelden.Enabled := True;
+
+        //Status weergeven
+        StatusBar.Panels.Items[0].Text := 'Sleutelschakelaar';
+      end;
     end;
     'SA': //Systeem actief
     begin
+      //Loggen
+      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+        ' Systeem geactiveerd');
+
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'Systeem geactiveerd';
       Btn_Activeren.Enabled := False;
@@ -165,11 +189,18 @@ begin
     end;
     'AM': //Systeem actiever mislukt
     begin
+      //Loggen
+      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' Activeren mislukt!');
+
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'Activeren mislukt';
     end;
     'SD': //Systeem de-actieveren
     begin
+      //Loggen
+      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+        ' Systeem gedeactiveerd');
+
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'Systeem gedeactiveerd';
       Btn_Activeren.Enabled := True;
@@ -177,8 +208,59 @@ begin
     end;
     'AL': //Alarm
     begin
-      //Hier gaan we de alarmen behandelen
-      Btn_Reset.Enabled := True;
+      //Loggen
+      case (waarde[4] + waarde[5]) of
+        'Re':
+        begin
+          //Reset
+          Btn_Reset.Enabled := False;
+          Btn_Deactiveren.Enabled := True;
+
+          //Loggen
+          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+            ' Reset');
+        end;
+        'La':
+        begin
+          //Break beam / Laserpointer
+          Btn_Reset.Enabled := True;
+          Btn_Deactiveren.Enabled := False;
+
+          //Loggen
+          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+            ' Laser');
+        end;
+        'Pi':
+        begin
+          //Pir
+          Btn_Reset.Enabled := True;
+          Btn_Deactiveren.Enabled := False;
+
+          //Loggen
+          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' PIR');
+
+        end;
+        'Gl':
+        begin
+          //Glasbreuk
+          Btn_Reset.Enabled := True;
+          Btn_Deactiveren.Enabled := False;
+
+          //Loggen
+          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+            ' Glasbreuk');
+        end;
+        'Ra':
+        begin
+          //Openraam
+          Btn_Reset.Enabled := True;
+          Btn_Deactiveren.Enabled := False;
+
+          //Loggen
+          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+            ' Openraam');
+        end;
+      end;
     end;
     else
     //Er is iets verkeerd gegaan?
@@ -213,12 +295,18 @@ end;
 procedure TMainFrm.Timer_SleutelSchakelaarTimer(Sender: TObject);
 begin
 
+  //var voor resetten
+  StilleAlarm := True;
+
   //Het (stille) alarm word geactiveerd
   SdpoSerial.WriteData('ST;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
 
-  ShowMessage('60 secjes voorbij, stille alarm, of gewone alarm gaat nu :)');
-
+  //Timer uitschakelen
   Timer_Sleutelschakelaar.Enabled := False;
+
+  //Knop actief maken
+  AanmeldenFrm.Btn_Aanmelden.Enabled := False;
+
 
 end;
 
@@ -236,14 +324,11 @@ end;
 
 procedure TMainFrm.Menu_SluitenClick(Sender: TObject);
 begin
-
-  SdpoSerial.WriteData('3');
-
   //Seriële verbinding uitzetten.
-  //SdpoSerial.active := False;
+  SdpoSerial.active := False;
 
   //Applicatie sluiten
-  //MainFrm.Close();
+  MainFrm.Close();
 end;
 
 procedure TMainFrm.Menu_ToevoegenClick(Sender: TObject);

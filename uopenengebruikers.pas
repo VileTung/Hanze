@@ -125,6 +125,7 @@ begin
     begin
       positie += 1;
     end;
+
   end;
 
   Result := resultaat;

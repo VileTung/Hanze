@@ -38,7 +38,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="11">
       <Unit0>
         <Filename Value="Bankbeveiliging.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -101,6 +101,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uDateTimeStamp"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="userialreadsplits.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uSerialReadSplits"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

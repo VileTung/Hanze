@@ -9,16 +9,6 @@ object MainFrm: TMainFrm
   Menu = HoofdMenu
   OnCreate = FormCreate
   LCLVersion = '1.0.12.0'
-  object Memo_Log: TMemo
-    Left = 8
-    Height = 170
-    Top = 8
-    Width = 304
-    Enabled = False
-    ReadOnly = True
-    ScrollBars = ssAutoVertical
-    TabOrder = 0
-  end
   object StatusBar: TStatusBar
     Left = 0
     Height = 23
@@ -42,8 +32,9 @@ object MainFrm: TMainFrm
     Top = 184
     Width = 96
     Caption = 'Activeren'
+    Enabled = False
     OnClick = Btn_ActiverenClick
-    TabOrder = 2
+    TabOrder = 1
   end
   object Btn_Deactiveren: TButton
     Left = 216
@@ -51,8 +42,9 @@ object MainFrm: TMainFrm
     Top = 184
     Width = 96
     Caption = 'Deactiveren'
+    Enabled = False
     OnClick = Btn_DeactiverenClick
-    TabOrder = 3
+    TabOrder = 2
   end
   object Btn_Reset: TButton
     Left = 104
@@ -62,6 +54,14 @@ object MainFrm: TMainFrm
     Caption = 'Resetten'
     Enabled = False
     OnClick = Btn_ResetClick
+    TabOrder = 3
+  end
+  object ListBox_Log: TListBox
+    Left = 8
+    Height = 168
+    Top = 8
+    Width = 304
+    ItemHeight = 0
     TabOrder = 4
   end
   object SdpoSerial: TSdpoSerial

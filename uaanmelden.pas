@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, ExtCtrls, uOpenenGebruikers, uIngelogd;
+  StdCtrls, ExtCtrls, uOpenenGebruikers, uIngelogd, uDateTimeStamp;
 
 type
 
@@ -46,6 +46,10 @@ begin
   begin
     //Aangegeven dat ingelog gelukt is
     ShowMessage('Succesvol ingelogd, we gaan over enkele seconden verder.');
+
+    //Loggen
+    MainFrm.ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+      ' Gebruiker ' + Edit_Gebruikersnaam.Text + ' is ingelogd.');
 
     //Opties voor ingelogde gebruikers weergeven
     uIngelogd.gebruikerIngelogd(Edit_Gebruikersnaam.Text);

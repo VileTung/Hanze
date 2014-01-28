@@ -5,7 +5,7 @@ unit uIngelogd;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, uDateTimeStamp;
 
 procedure gebruikerIngelogd(Gebruiker: string);
 procedure gebruikerUitgelogd();
@@ -30,11 +30,18 @@ begin
   //Menu - Restant
   MainFrm.Menu_Aanmelden.Visible := False;
   MainFrm.Menu_Afmelden.Visible := True;
+  MainFrm.Menu_Sluiten.Visible := False;
 
   //Activeren/Resetten/Deactiveren
   MainFrm.Btn_Activeren.Enabled := True;
-  MainFrm.Btn_Reset.Enabled := True;
-  MainFrm.Btn_Deactiveren.Enabled := True;
+
+  //Als stille alarm getriggerd is,
+  //moeten we dit na inloggen
+  //wel kunnen resetten
+  if (uMain.StilleAlarm = True) then
+  begin
+    MainFrm.Btn_Reset.Enabled := true;
+  end;
 
 end;
 
@@ -45,6 +52,10 @@ begin
   uMain.Ingelogd := '';
   MainFrm.StatusBar.Panels.Items[1].Text := 'Ingelogd: Nee';
 
+  //Loggen
+  MainFrm.ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+    ' Gebruiker is uitgelogd.');
+
   //Menu - Alleen als het een Systeembeheerder is
   if (uMain.SysteemBeheerder = True) then
   begin
@@ -54,6 +65,7 @@ begin
   //Menu - Restant
   MainFrm.Menu_Aanmelden.Visible := True;
   MainFrm.Menu_Afmelden.Visible := False;
+  MainFrm.Menu_Sluiten.Visible := True;
 
   //Activeren/Resetten/Deactiveren
   MainFrm.Btn_Activeren.Enabled := False;
