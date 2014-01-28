@@ -38,7 +38,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="9">
+    <Units Count="10">
       <Unit0>
         <Filename Value="Bankbeveiliging.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -96,6 +96,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uOpslaanGebruikers"/>
       </Unit8>
+      <Unit9>
+        <Filename Value="udatetimestamp.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uDateTimeStamp"/>
+      </Unit9>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

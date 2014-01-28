@@ -31,6 +31,9 @@ begin
   MainFrm.Menu_Aanmelden.Visible := False;
   MainFrm.Menu_Afmelden.Visible := True;
 
+  //Activeren/Resetten/Deactiveren
+  MainFrm.Btn_Reset.Enabled := True;
+
 end;
 
 procedure gebruikerUitgelogd();
@@ -49,6 +52,11 @@ begin
   //Menu - Restant
   MainFrm.Menu_Aanmelden.Visible := True;
   MainFrm.Menu_Afmelden.Visible := False;
+
+  //Activeren/Resetten/Deactiveren
+  MainFrm.Btn_Activeren.Enabled := False;
+  MainFrm.Btn_Reset.Enabled := False;
+  MainFrm.Btn_Deactiveren.Enabled := False;
 end;
 
 end.

@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Menus, ComCtrls, SdpoSerial, uArduinoConnect, uAanmelden,
-  uIngelogd, uGebruikerToevoegen, uGebruikers;
+  uIngelogd, uGebruikerToevoegen, uGebruikers, uDateTimeStamp;
 
 type
 
@@ -16,6 +16,7 @@ type
   TMainFrm = class(TForm)
     Btn_Activeren: TButton;
     Btn_Deactiveren: TButton;
+    Btn_Reset: TButton;
     HoofdMenu: TMainMenu;
     Memo_Log: TMemo;
     Menu_Afmelden: TMenuItem;
@@ -31,6 +32,7 @@ type
     Timer_SleutelSchakelaar: TTimer;
     procedure Btn_ActiverenClick(Sender: TObject);
     procedure Btn_DeactiverenClick(Sender: TObject);
+    procedure Btn_ResetClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Menu_AanmeldenClick(Sender: TObject);
     procedure Menu_AfmeldenClick(Sender: TObject);
@@ -89,12 +91,20 @@ procedure TMainFrm.Btn_ActiverenClick(Sender: TObject);
 begin
   //Het systeem actieveren
   //Stuur: Sl;minuut;uur;dag;ja(ar)
-  SdpoSerial.WriteData('Sl;01;02;03;92');
+
+  SdpoSerial.WriteData('SA;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
 end;
 
 procedure TMainFrm.Btn_DeactiverenClick(Sender: TObject);
 begin
   //Het systeem de-activeren
+  SdpoSerial.WriteData('SD;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
+end;
+
+procedure TMainFrm.Btn_ResetClick(Sender: TObject);
+begin
+  //Het systeem resetten, de alarmen
+  SdpoSerial.WriteData('RS;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
 end;
 
 procedure TMainFrm.SdpoSerialRxData(Sender: TObject);
@@ -118,24 +128,24 @@ begin
 
   end;
 
-  //Memo_Log.Lines.Add(s1);
+  Memo_Log.Lines.Add(waarde);
 
   case (waarde[1] + waarde[2]) of
-    'Vb': //Verbonden
+    'VB': //Verbonden
     begin
       Status := True;
 
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'We zijn verbonden';
     end;
-    'Ac': //Actief
+    'HB': //Actief
     begin
       Status := True;
 
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'We zijn nog steeds verbonden';
     end;
-    'Sl': //Sleutelschakelaar
+    'SL': //Sleutelschakelaar
     begin
       //Timer starten, gebruiker heeft 60 seconden
       Timer_SleutelSchakelaar.Enabled := True;
@@ -146,9 +156,29 @@ begin
       //Status weergeven
       StatusBar.Panels.Items[0].Text := 'Sleutelschakelaar';
     end;
-    'Al': //Alarm
+    'SA': //Systeem actief
+    begin
+      //Status weergeven
+      StatusBar.Panels.Items[0].Text := 'Systeem geactiveerd';
+      Btn_Activeren.Enabled := False;
+      Btn_Deactiveren.Enabled := True;
+    end;
+    'AM': //Systeem actiever mislukt
+    begin
+      //Status weergeven
+      StatusBar.Panels.Items[0].Text := 'Activeren mislukt';
+    end;
+    'SD': //Systeem de-actieveren
+    begin
+      //Status weergeven
+      StatusBar.Panels.Items[0].Text := 'Systeem gedeactiveerd';
+      Btn_Activeren.Enabled := True;
+      Btn_Deactiveren.Enabled := False;
+    end;
+    'AL': //Alarm
     begin
       //Hier gaan we de alarmen behandelen
+      Btn_Reset.Enabled := True;
     end;
     else
     //Er is iets verkeerd gegaan?
@@ -164,7 +194,7 @@ begin
     status := False;
 
     //Bericht sturen naar COM poort
-    SdpoSerial.WriteData('2');
+    SdpoSerial.WriteData('HB;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
   end
   else
   begin
@@ -182,6 +212,9 @@ end;
 
 procedure TMainFrm.Timer_SleutelSchakelaarTimer(Sender: TObject);
 begin
+
+  //Het (stille) alarm word geactiveerd
+  SdpoSerial.WriteData('ST;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
 
   ShowMessage('60 secjes voorbij, stille alarm, of gewone alarm gaat nu :)');
 

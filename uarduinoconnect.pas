@@ -5,7 +5,7 @@ unit uArduinoConnect;
 interface
 
 uses
-  Classes, SysUtils, SdpoSerial, ExtCtrls, Dialogs;
+  Classes, SysUtils, SdpoSerial, ExtCtrls, Dialogs, uDateTimeStamp;
 
 function verbinden(Serial: TSdpoSerial): string;
 
@@ -36,7 +36,7 @@ begin
       Sleep(1000); //1 sec
 
       //Bericht sturen naar COM poort
-      Serial.WriteData('VB');
+      Serial.WriteData('VB;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
 
       break;
     except

@@ -40,21 +40,29 @@ object MainFrm: TMainFrm
     Left = 8
     Height = 25
     Top = 184
-    Width = 152
-    Caption = 'Systeem activeren'
-    Enabled = False
+    Width = 96
+    Caption = 'Activeren'
     OnClick = Btn_ActiverenClick
     TabOrder = 2
   end
   object Btn_Deactiveren: TButton
-    Left = 160
+    Left = 216
     Height = 25
     Top = 184
-    Width = 152
-    Caption = 'Systeem deactiveren'
-    Enabled = False
+    Width = 96
+    Caption = 'Deactiveren'
     OnClick = Btn_DeactiverenClick
     TabOrder = 3
+  end
+  object Btn_Reset: TButton
+    Left = 104
+    Height = 25
+    Top = 184
+    Width = 110
+    Caption = 'Resetten'
+    Enabled = False
+    OnClick = Btn_ResetClick
+    TabOrder = 4
   end
   object SdpoSerial: TSdpoSerial
     Active = False
@@ -69,7 +77,7 @@ object MainFrm: TMainFrm
     top = 192
   end
   object Timer_HeartBeat: TTimer
-    Interval = 50000
+    Interval = 60000
     OnTimer = Timer_HeartBeatTimer
     left = 272
     top = 136

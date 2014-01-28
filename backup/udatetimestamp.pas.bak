@@ -1,0 +1,28 @@
+unit uDateTimeStamp;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, Dialogs;
+
+function OnzeDateTimeStamp(): string;
+
+implementation
+
+function OnzeDateTimeStamp(): string;
+var
+  Nu: TDateTime;
+begin
+
+  Nu := Now;
+  ShowMessage('Now : ' + FormatDateTime('hh;nn;DD;MM;YY', Nu));
+  ShowMessage('Now : ' + FormatDateTime('DD MM YY', Nu));
+  ShowMessage('Now : ' + FormatDateTime('c', Nu));
+
+end;
+
+end.
+
+
