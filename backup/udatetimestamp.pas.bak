@@ -28,7 +28,7 @@ var
 begin
 
   Nu := Now;
-  Result := FormatDateTime('[DD-MM-YY hh:nn]', Nu);
+  Result := FormatDateTime('[DD-MM-YY hh:nn:ss]', Nu);
 
 end;
 

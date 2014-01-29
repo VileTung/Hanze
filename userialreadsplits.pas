@@ -8,6 +8,7 @@ uses
   Classes, SysUtils, Dialogs;
 
 procedure serialSplitsen(regel: string);
+procedure serialArrayLegen();
 
 implementation
 
@@ -17,12 +18,10 @@ procedure serialSplitsen(regel: string);
 var
   C: char;
   resultaat: string;
-  i: integer;
 begin
 
   //Standaard waardes
   resultaat := '';
-  i := 0;
 
   for C in regel do
   begin
@@ -34,14 +33,31 @@ begin
 
     if (C = #13) then
     begin
-      ShowMessage(resultaat);
+      //Waarde in array zetten
+      uMain.SerialArray[uMain.SerialReadSplitsI] := resultaat;
 
       //Resultaat resetten
       resultaat := '';
 
-      i += 1;
+      uMain.SerialReadSplitsI += 1;
     end;
 
+  end;
+
+end;
+
+procedure serialArrayLegen();
+var
+  i: integer;
+begin
+
+  //Standaard waarde herstellen
+  uMain.SerialReadSplitsI := 1;
+
+  //Loop leegdraaien
+  for i := low(uMain.SerialArray) to high(uMain.SerialArray) do
+  begin
+    uMain.SerialArray[i] := '';
   end;
 
 end;

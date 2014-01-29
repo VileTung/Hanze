@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Menus, ComCtrls, SdpoSerial, uArduinoConnect, uAanmelden,
-  uIngelogd, uGebruikerToevoegen, uGebruikers, uDateTimeStamp, uSerialReadSplits;
+  uIngelogd, uGebruikerToevoegen, uGebruikers, uDateTimeStamp,
+  uSerialReadSplits, uLoggen;
 
 type
 
@@ -56,6 +57,8 @@ var
   Sleutel: boolean;
   SysteemBeheerder: boolean;
   StilleAlarm: boolean;
+  SerialReadSplitsI: integer;
+  SerialArray: array[1..10] of string;
 
 implementation
 
@@ -65,6 +68,8 @@ implementation
 
 procedure TMainFrm.FormCreate(Sender: TObject);
 begin
+  //Standaard
+  SerialReadSplitsI := 1;
 
   //Standaard is er niemand ingelogd
   Ingelogd := '';
@@ -111,13 +116,14 @@ end;
 
 procedure TMainFrm.SdpoSerialRxData(Sender: TObject);
 var
-  i: integer;
-  serial, waarde, test: string;
+  i, teller: integer;
+  serial, waarde, gesplitst: string;
 begin
 
   serial := '';
   waarde := '';
 
+  //Zodra we hier aankomen even wachten, om alles te bufferen.
   for i := 1 to 20000 do
   begin
     serial := SdpoSerial.ReadData;
@@ -128,143 +134,152 @@ begin
     end;
   end;
 
-  test := waarde;
+  //Waarde sturen om te splitsen :)
+  uSerialReadSplits.serialSplitsen(waarde);
 
-  uSerialReadSplits.serialSplitsen(test);
+  for teller := low(SerialArray) to high(SerialArray) do
+  begin
 
-  //ListBox_Log.Items.Add(waarde);
+    gesplitst := SerialArray[teller];
 
-  //Memo_Log.Lines.Add(waarde); //Debuggen, om te kijken wat we krijgen :)
-
-  case (waarde[1] + waarde[2]) of
-    'VB': //Verbonden
+    if (gesplitst <> '') then
     begin
-      Status := True;
 
-      //Loggen
-      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' Verbonden');
-
-      //Status weergeven
-      StatusBar.Panels.Items[0].Text := 'We zijn verbonden';
-    end;
-    'HB': //Actief
-    begin
-      Status := True;
-
-      //Loggen
-      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' Heartbeat');
-
-      //Status weergeven
-      StatusBar.Panels.Items[0].Text := 'We zijn nog steeds verbonden';
-    end;
-    'SL': //Sleutelschakelaar
-    begin
-      //Eerst kijken of we niet al ingelogd zijn
-      if (Ingelogd = '') then
-      begin
-        //Timer starten, gebruiker heeft 60 seconden
-        Timer_SleutelSchakelaar.Enabled := True;
-
-        //Loggen
-        ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-          ' Sleutelschakelaar');
-
-        //Knop actief maken
-        AanmeldenFrm.Btn_Aanmelden.Enabled := True;
-
-        //Status weergeven
-        StatusBar.Panels.Items[0].Text := 'Sleutelschakelaar';
-      end;
-    end;
-    'SA': //Systeem actief
-    begin
-      //Loggen
-      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-        ' Systeem geactiveerd');
-
-      //Status weergeven
-      StatusBar.Panels.Items[0].Text := 'Systeem geactiveerd';
-      Btn_Activeren.Enabled := False;
-      Btn_Deactiveren.Enabled := True;
-    end;
-    'AM': //Systeem actiever mislukt
-    begin
-      //Loggen
-      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' Activeren mislukt!');
-
-      //Status weergeven
-      StatusBar.Panels.Items[0].Text := 'Activeren mislukt';
-    end;
-    'SD': //Systeem de-actieveren
-    begin
-      //Loggen
-      ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-        ' Systeem gedeactiveerd');
-
-      //Status weergeven
-      StatusBar.Panels.Items[0].Text := 'Systeem gedeactiveerd';
-      Btn_Activeren.Enabled := True;
-      Btn_Deactiveren.Enabled := False;
-    end;
-    'AL': //Alarm
-    begin
-      //Loggen
-      case (waarde[4] + waarde[5]) of
-        'Re':
+      case (gesplitst[1] + gesplitst[2]) of
+        'VB': //Verbonden
         begin
-          //Reset
-          Btn_Reset.Enabled := False;
+          Status := True;
+
+          //Loggen
+          uLoggen.GegevensLoggen('Verbonden');
+
+          //Status weergeven
+          StatusBar.Panels.Items[0].Text := 'We zijn verbonden';
+        end;
+        'HB': //Actief
+        begin
+          Status := True;
+
+          //Loggen
+          uLoggen.GegevensLoggen('Heartbeat');
+
+          //Status weergeven
+          StatusBar.Panels.Items[0].Text := 'We zijn nog steeds verbonden';
+        end;
+        'SL': //Sleutelschakelaar
+        begin
+          //Eerst kijken of we niet al ingelogd zijn
+          if (Ingelogd = '') then
+          begin
+            //Het response geven
+            sleep(1000);
+            SdpoSerial.WriteData('SL;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
+
+            //Timer starten, gebruiker heeft 60 seconden
+            Timer_SleutelSchakelaar.Enabled := True;
+
+            //Loggen
+            uLoggen.GegevensLoggen('Sleutelschakelaar');
+
+            //Knop actief maken
+            AanmeldenFrm.Btn_Aanmelden.Enabled := True;
+
+            //Status weergeven
+            StatusBar.Panels.Items[0].Text := 'Sleutelschakelaar';
+          end;
+        end;
+        'SA': //Systeem actief
+        begin
+          //Loggen
+          uLoggen.GegevensLoggen('Systeem geactiveerd');
+
+          //Status weergeven
+          StatusBar.Panels.Items[0].Text := 'Systeem geactiveerd';
+          Btn_Activeren.Enabled := False;
           Btn_Deactiveren.Enabled := True;
-
-          //Loggen
-          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-            ' Reset');
         end;
-        'La':
+        'AM': //Systeem actiever mislukt
         begin
-          //Break beam / Laserpointer
-          Btn_Reset.Enabled := True;
-          Btn_Deactiveren.Enabled := False;
-
           //Loggen
-          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-            ' Laser');
+          uLoggen.GegevensLoggen('Activeren mislukt!');
+
+          //Status weergeven
+          StatusBar.Panels.Items[0].Text := 'Activeren mislukt';
         end;
-        'Pi':
+        'SD': //Systeem de-actieveren
         begin
-          //Pir
-          Btn_Reset.Enabled := True;
-          Btn_Deactiveren.Enabled := False;
-
           //Loggen
-          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog + ' PIR');
+          uLoggen.GegevensLoggen('Systeem gedeactiveerd');
 
+          //Status weergeven
+          StatusBar.Panels.Items[0].Text := 'Systeem gedeactiveerd';
+          Btn_Activeren.Enabled := True;
+          Btn_Deactiveren.Enabled := False;
         end;
-        'Gl':
+        'AL': //Alarm
         begin
-          //Glasbreuk
-          Btn_Reset.Enabled := True;
-          Btn_Deactiveren.Enabled := False;
-
           //Loggen
-          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-            ' Glasbreuk');
-        end;
-        'Ra':
-        begin
-          //Openraam
-          Btn_Reset.Enabled := True;
-          Btn_Deactiveren.Enabled := False;
+          case (gesplitst[4] + gesplitst[5]) of
+            'Re':
+            begin
+              //Reset
+              Btn_Reset.Enabled := False;
+              Btn_Deactiveren.Enabled := True;
 
-          //Loggen
-          ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-            ' Openraam');
+              //Loggen
+              uLoggen.GegevensLoggen('Reset');
+              ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
+                ' Reset');
+            end;
+            'La':
+            begin
+              //Break beam / Laserpointer
+              Btn_Reset.Enabled := True;
+              Btn_Deactiveren.Enabled := False;
+
+              //Loggen
+              uLoggen.GegevensLoggen('Laser');
+            end;
+            'Pi':
+            begin
+              //Pir
+              Btn_Reset.Enabled := True;
+              Btn_Deactiveren.Enabled := False;
+
+              //Loggen
+              uLoggen.GegevensLoggen('PIR');
+
+            end;
+            'Gl':
+            begin
+              //Glasbreuk
+              Btn_Reset.Enabled := True;
+              Btn_Deactiveren.Enabled := False;
+
+              //Loggen
+              uLoggen.GegevensLoggen('Glasbreuk');
+            end;
+            'Ra':
+            begin
+              //Openraam
+              Btn_Reset.Enabled := True;
+              Btn_Deactiveren.Enabled := False;
+
+              //Loggen
+              uLoggen.GegevensLoggen('Openraam');
+            end;
+          end;
         end;
+        else
+        //Er is iets verkeerd gegaan?
       end;
+
     end;
-    else
-    //Er is iets verkeerd gegaan?
+
   end;
+
+  //Array leeg maken
+  serialArrayLegen();
 
 end;
 
@@ -284,6 +299,7 @@ begin
     SdpoSerial.Active := False;
 
     //Status weergeven
+    uLoggen.GegevensLoggen('Verbinding verbroken!');
     StatusBar.Panels.Items[0].Text := 'Verbinding verbroken!';
 
     //Opnieuw verbinding maken
@@ -306,7 +322,6 @@ begin
 
   //Knop actief maken
   AanmeldenFrm.Btn_Aanmelden.Enabled := False;
-
 
 end;
 

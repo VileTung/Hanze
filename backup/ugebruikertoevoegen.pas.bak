@@ -38,8 +38,8 @@ procedure TGebruikerToevoegenFrm.Btn_GebruikerToevoegenClick(Sender: TObject);
 begin
 
   //We gaan kijken of deze gebruiker al bestaat
-  if (OpenenGebruiker('C:\Users\Kevin\Desktop\testje', Edit_Gebruikersnaam.Text,
-    '', True) = 'true') then
+  if (OpenenGebruiker(ExtractFilePath(Application.ExeName) + 'gebruikers',
+    Edit_Gebruikersnaam.Text, '', True) = 'true') then
   begin
     ShowMessage('De gekozen gebruikersnaam is al in gebruik. Kies een andere kiest.');
   end
@@ -67,9 +67,17 @@ begin
           'gebruikers',
           Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text);
 
+        //Loggen
+        uLoggen.GegevensLoggen('De gebruiker "' + Edit_Gebruikersnaam.Text +
+          '" is toegevoegd!');
+
         //Melding weergeven
         ShowMessage('De gebruiker "' + Edit_Gebruikersnaam.Text + '" is toegevoegd!');
       end;
+
+      //Velden weer leegmaken
+      Edit_Gebruikersnaam.Text := '';
+      Edit_Wachtwoord.Text := '';
 
       //Form sluiten
       GebruikerToevoegenFrm.Close();

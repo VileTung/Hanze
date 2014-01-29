@@ -40,7 +40,7 @@ begin
   //wel kunnen resetten
   if (uMain.StilleAlarm = True) then
   begin
-    MainFrm.Btn_Reset.Enabled := true;
+    MainFrm.Btn_Reset.Enabled := True;
   end;
 
 end;
@@ -53,8 +53,7 @@ begin
   MainFrm.StatusBar.Panels.Items[1].Text := 'Ingelogd: Nee';
 
   //Loggen
-  MainFrm.ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-    ' Gebruiker is uitgelogd.');
+  uLoggen.GegevensLoggen('Gebruiker is uitgelogd');
 
   //Menu - Alleen als het een Systeembeheerder is
   if (uMain.SysteemBeheerder = True) then

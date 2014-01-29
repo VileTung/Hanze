@@ -31,7 +31,20 @@ begin
 
   AssignFile(bestand, bestandsLocatie);
 
-  reset(bestand);
+  //Als het bestand niet bestaat, maken we die aan :)
+  if not FileExists(bestandsLocatie) then
+  begin
+    //Bestand aanmaken
+    Rewrite(bestand);
+
+    //Asluiten
+    CloseFile(bestand);
+
+    //Opnieuw openen
+    AssignFile(bestand, bestandsLocatie);
+  end;
+
+  Reset(bestand);
 
   while not EOF(bestand) do
   begin
@@ -125,6 +138,7 @@ begin
     begin
       positie += 1;
     end;
+
   end;
 
   Result := resultaat;

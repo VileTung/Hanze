@@ -31,7 +31,23 @@ begin
 
   AssignFile(bestand, bestandsLocatie);
 
-  reset(bestand);
+  //Als het bestand niet bestaat, maken we die aan :)
+  if not FileExists(bestandsLocatie) then
+  begin
+    //Bestand aanmaken
+    Rewrite(bestand);
+
+    //Standaard gebruiker schrijven
+    WriteLn(bestand, 'Admin' + #9 + 'Admin' + #9 + '1');
+
+    //Asluiten
+    CloseFile(bestand);
+
+    //Opnieuw openen
+    AssignFile(bestand, bestandsLocatie);
+  end;
+
+  Reset(bestand);
 
   while not EOF(bestand) do
   begin

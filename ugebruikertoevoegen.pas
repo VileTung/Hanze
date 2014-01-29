@@ -30,6 +30,8 @@ var
 
 implementation
 
+uses uLoggen;
+
 {$R *.lfm}
 
 { TGebruikerToevoegenFrm }
@@ -67,9 +69,17 @@ begin
           'gebruikers',
           Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text);
 
+        //Loggen
+        uLoggen.GegevensLoggen('De gebruiker "' + Edit_Gebruikersnaam.Text +
+          '" is toegevoegd!');
+
         //Melding weergeven
         ShowMessage('De gebruiker "' + Edit_Gebruikersnaam.Text + '" is toegevoegd!');
       end;
+
+      //Velden weer leegmaken
+      Edit_Gebruikersnaam.Text := '';
+      Edit_Wachtwoord.Text := '';
 
       //Form sluiten
       GebruikerToevoegenFrm.Close();

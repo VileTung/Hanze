@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, sdposeriallaz, uMain, uArduinoConnect, uAanmelden, uOpenenGebruikers,
   uIngelogd, uGebruikers, uGebruikerToevoegen, uOpslaanGebruikers,
-uDateTimeStamp, uSerialReadSplits
+uDateTimeStamp, uSerialReadSplits, uLoggen
   { you can add units after this };
 
 {$R *.res}

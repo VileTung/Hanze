@@ -12,7 +12,7 @@ procedure gebruikerUitgelogd();
 
 implementation
 
-uses uMain;
+uses uMain, uLoggen;
 
 procedure gebruikerIngelogd(Gebruiker: string);
 begin
@@ -53,8 +53,7 @@ begin
   MainFrm.StatusBar.Panels.Items[1].Text := 'Ingelogd: Nee';
 
   //Loggen
-  MainFrm.ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-    ' Gebruiker is uitgelogd.');
+  uLoggen.GegevensLoggen('Gebruiker is uitgelogd');
 
   //Menu - Alleen als het een Systeembeheerder is
   if (uMain.SysteemBeheerder = True) then

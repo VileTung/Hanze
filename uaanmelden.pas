@@ -32,7 +32,7 @@ var
 
 implementation
 
-uses uMain;
+uses uMain, uLoggen;
 
 {$R *.lfm}
 
@@ -48,8 +48,7 @@ begin
     ShowMessage('Succesvol ingelogd, we gaan over enkele seconden verder.');
 
     //Loggen
-    MainFrm.ListBox_Log.Items.Add(uDateTimeStamp.OnzeDateTimeStampLog +
-      ' Gebruiker ' + Edit_Gebruikersnaam.Text + ' is ingelogd.');
+    uLoggen.GegevensLoggen('Gebruiker ' + Edit_Gebruikersnaam.Text + ' is ingelogd');
 
     //Opties voor ingelogde gebruikers weergeven
     uIngelogd.gebruikerIngelogd(Edit_Gebruikersnaam.Text);

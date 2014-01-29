@@ -4,16 +4,16 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="11">
+    <Units Count="14">
       <Unit0>
         <Filename Value="Bankbeveiliging.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Bankbeveiliging"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="34" Y="16"/>
-        <UsageCount Value="60"/>
+        <CursorPos X="1" Y="25"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -23,11 +23,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMain"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="118"/>
-        <CursorPos X="21" Y="133"/>
-        <UsageCount Value="60"/>
+        <TopLine Value="165"/>
+        <CursorPos X="23" Y="175"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -35,11 +36,11 @@
         <Filename Value="uarduinoconnect.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uArduinoConnect"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="11"/>
         <WindowIndex Value="0"/>
         <TopLine Value="25"/>
         <CursorPos X="77" Y="39"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -49,33 +50,34 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uAanmelden"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="37"/>
-        <CursorPos X="68" Y="52"/>
-        <UsageCount Value="55"/>
+        <TopLine Value="41"/>
+        <CursorPos X="86" Y="51"/>
+        <UsageCount Value="58"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="uopenengebruikers.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uOpenenGebruikers"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="101"/>
-        <CursorPos X="1" Y="105"/>
-        <UsageCount Value="54"/>
+        <TopLine Value="26"/>
+        <CursorPos X="57" Y="41"/>
+        <UsageCount Value="57"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="uingelogd.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uIngelogd"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="28"/>
-        <CursorPos X="27" Y="42"/>
-        <UsageCount Value="53"/>
+        <TopLine Value="1"/>
+        <CursorPos X="20" Y="15"/>
+        <UsageCount Value="56"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -85,10 +87,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uGebruikers"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="74" Y="171"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="85"/>
+        <CursorPos X="10" Y="100"/>
+        <UsageCount Value="53"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="ugebruikertoevoegen.pas"/>
@@ -97,181 +102,198 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uGebruikerToevoegen"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="73" Y="41"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="18"/>
+        <CursorPos X="1" Y="33"/>
+        <UsageCount Value="53"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="uopslaangebruikers.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uOpslaanGebruikers"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="24" Y="11"/>
-        <UsageCount Value="46"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="udatetimestamp.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uDateTimeStamp"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="8"/>
-        <CursorPos X="47" Y="31"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="10"/>
+        <CursorPos X="34" Y="21"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="userialreadsplits.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uSerialReadSplits"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="20"/>
-        <CursorPos X="29" Y="44"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="1"/>
+        <CursorPos X="16" Y="51"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="uloggen.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uLoggen"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5"/>
+        <CursorPos X="21" Y="26"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1693"/>
+        <CursorPos X="3" Y="1707"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2176"/>
+        <CursorPos X="1" Y="2190"/>
+        <UsageCount Value="10"/>
+      </Unit13>
     </Units>
     <General>
       <ActiveWindowIndexAtStart Value="0"/>
     </General>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="umain.pas"/>
-        <Caret Line="212" Column="23" TopLine="198"/>
+        <Filename Value="userialreadsplits.pas"/>
+        <Caret Line="18" Column="28" TopLine="7"/>
       </Position1>
       <Position2>
-        <Filename Value="umain.pas"/>
-        <Caret Line="306" Column="3" TopLine="303"/>
+        <Filename Value="userialreadsplits.pas"/>
+        <Caret Line="47" Column="1" TopLine="32"/>
       </Position2>
       <Position3>
-        <Filename Value="uingelogd.pas"/>
-        <Caret Line="53" Column="62" TopLine="37"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="59" Column="30" TopLine="40"/>
       </Position3>
       <Position4>
-        <Filename Value="uaanmelden.pas"/>
-        <Caret Line="48" Column="77" TopLine="34"/>
+        <Filename Value="userialreadsplits.pas"/>
+        <Caret Line="45" Column="43" TopLine="22"/>
       </Position4>
       <Position5>
-        <Filename Value="uingelogd.pas"/>
-        <Caret Line="26" Column="40" TopLine="12"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="60" Column="14" TopLine="46"/>
       </Position5>
       <Position6>
         <Filename Value="umain.pas"/>
-        <Caret Line="306" Column="3" TopLine="303"/>
+        <Caret Line="62" Column="18" TopLine="58"/>
       </Position6>
       <Position7>
         <Filename Value="umain.pas"/>
-        <Caret Line="131" Column="15" TopLine="110"/>
+        <Caret Line="138" Column="15" TopLine="116"/>
       </Position7>
       <Position8>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="27" Column="15" TopLine="17"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="60" Column="14" TopLine="46"/>
       </Position8>
       <Position9>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="31" Column="1" TopLine="11"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="140" Column="66" TopLine="123"/>
       </Position9>
       <Position10>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="26" Column="20" TopLine="11"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="143" Column="31" TopLine="120"/>
       </Position10>
       <Position11>
         <Filename Value="umain.pas"/>
-        <Caret Line="10" Column="81" TopLine="1"/>
+        <Caret Line="320" Column="1" TopLine="212"/>
       </Position11>
       <Position12>
         <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="26" Column="32" TopLine="10"/>
+        <Caret Line="49" Column="27" TopLine="37"/>
       </Position12>
       <Position13>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="35" Column="14" TopLine="16"/>
+        <Filename Value="uloggen.pas"/>
+        <Caret Line="10" Column="40" TopLine="1"/>
       </Position13>
       <Position14>
-        <Filename Value="umain.pas"/>
-        <Caret Line="128" Column="27" TopLine="119"/>
+        <Filename Value="uloggen.pas"/>
+        <Caret Line="14" Column="28" TopLine="1"/>
       </Position14>
       <Position15>
-        <Filename Value="umain.pas"/>
-        <Caret Line="293" Column="14" TopLine="49"/>
+        <Filename Value="uloggen.pas"/>
+        <Caret Line="21" Column="46" TopLine="6"/>
       </Position15>
       <Position16>
-        <Filename Value="umain.pas"/>
-        <Caret Line="100" Column="41" TopLine="84"/>
+        <Filename Value="uloggen.pas"/>
+        <Caret Line="8" Column="51" TopLine="1"/>
       </Position16>
       <Position17>
         <Filename Value="umain.pas"/>
-        <Caret Line="292" Column="3" TopLine="281"/>
+        <Caret Line="153" Column="11" TopLine="131"/>
       </Position17>
       <Position18>
         <Filename Value="umain.pas"/>
-        <Caret Line="307" Column="3" TopLine="295"/>
+        <Caret Line="257" Column="42" TopLine="237"/>
       </Position18>
       <Position19>
-        <Filename Value="umain.pas"/>
-        <Caret Line="172" Column="9" TopLine="152"/>
+        <Filename Value="Bankbeveiliging.lpr"/>
+        <Caret Line="16" Column="34" TopLine="1"/>
       </Position19>
       <Position20>
-        <Filename Value="umain.pas"/>
-        <Caret Line="82" Column="14" TopLine="68"/>
+        <Filename Value="uaanmelden.pas"/>
+        <Caret Line="43" Column="3" TopLine="35"/>
       </Position20>
       <Position21>
-        <Filename Value="umain.pas"/>
-        <Caret Line="89" Column="14" TopLine="68"/>
+        <Filename Value="ugebruikertoevoegen.pas"/>
+        <Caret Line="41" Column="73" TopLine="1"/>
       </Position21>
       <Position22>
-        <Filename Value="umain.pas"/>
-        <Caret Line="96" Column="13" TopLine="73"/>
+        <Filename Value="ugebruikertoevoegen.pas"/>
+        <Caret Line="74" Column="30" TopLine="53"/>
       </Position22>
       <Position23>
-        <Filename Value="Bankbeveiliging.lpr"/>
-        <Caret Line="25" Column="1" TopLine="1"/>
+        <Filename Value="ugebruikertoevoegen.pas"/>
+        <Caret Line="70" Column="9" TopLine="56"/>
       </Position23>
       <Position24>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="42" Column="5" TopLine="21"/>
+        <Filename Value="uaanmelden.pas"/>
+        <Caret Line="51" Column="86" TopLine="41"/>
       </Position24>
       <Position25>
-        <Filename Value="Bankbeveiliging.lpr"/>
-        <Caret Line="25" Column="1" TopLine="1"/>
+        <Filename Value="uingelogd.pas"/>
+        <Caret Line="56" Column="52" TopLine="12"/>
       </Position25>
       <Position26>
-        <Filename Value="umain.pas"/>
-        <Caret Line="134" Column="26" TopLine="120"/>
+        <Filename Value="uaanmelden.pas"/>
+        <Caret Line="35" Column="20" TopLine="19"/>
       </Position26>
       <Position27>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="37" Column="30" TopLine="20"/>
+        <Filename Value="ugebruikers.pas"/>
+        <Caret Line="171" Column="74" TopLine="82"/>
       </Position27>
       <Position28>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="8" Column="30" TopLine="1"/>
+        <Filename Value="ugebruikers.pas"/>
+        <Caret Line="39" Column="15" TopLine="101"/>
       </Position28>
       <Position29>
-        <Filename Value="userialreadsplits.pas"/>
-        <Caret Line="37" Column="12" TopLine="21"/>
+        <Filename Value="ugebruikers.pas"/>
+        <Caret Line="111" Column="7" TopLine="94"/>
       </Position29>
       <Position30>
-        <Filename Value="Bankbeveiliging.lpr"/>
-        <Caret Line="25" Column="1" TopLine="1"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="153" Column="19" TopLine="143"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="userialreadsplits.pas"/>
-        <Line Value="38"/>
-      </Item1>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

@@ -40,7 +40,7 @@ var
 
 implementation
 
-uses uOpenenGebruikers;
+uses uOpenenGebruikers, uLoggen;
 
 {$R *.lfm}
 
@@ -96,13 +96,24 @@ begin
   try
     ID := StrToInt(Gebruiker);
 
-    GebruikersArray[ID].gebruiker := '';
+    if (GebruikersArray[ID].admin <> 0) then
+    begin
+      //Loggen
+      uLoggen.GegevensLoggen('Gebruiker "' + GebruikersArray[ID].gebruiker +
+        '" is verwijderd');
 
-    GebruikersArray[ID].wachtwoord := '';
+      GebruikersArray[ID].gebruiker := '';
 
-    GebruikersArray[ID].admin := '';
+      GebruikersArray[ID].wachtwoord := '';
 
-    MemoVullen();
+      GebruikersArray[ID].admin := '';
+
+      MemoVullen();
+    end
+    else
+    begin
+      ShowMessage('Een administrator kan niet verwijderd worden!');
+    end;
 
   except
     ShowMessage('Geen geldige ID opgegeven!');
@@ -131,6 +142,10 @@ begin
       GebruikersArray[ID].wachtwoord);
 
     MemoVullen();
+
+    //Loggen
+    uLoggen.GegevensLoggen('Gebruiker "' + GebruikersArray[ID].gebruiker +
+      '" is gewijzigd');
 
   except
     ShowMessage('Geen geldige ID opgegeven!');
@@ -168,7 +183,7 @@ var
   i: integer;
 begin
 
-  AssignFile(bestand, 'C:\Users\Kevin\Desktop\testje');
+  AssignFile(bestand, ExtractFilePath(Application.ExeName) + 'gebruikers');
 
   rewrite(bestand);
 
