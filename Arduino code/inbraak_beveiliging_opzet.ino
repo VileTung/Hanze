@@ -3,7 +3,7 @@ programatuur voor project "beveiliging"
 gemaakt door Jorn Claassens
 08-01-2014
 laatste update
-29-01-2014 - 09:09
+29-01-2014 - 12:47
 */
 //ingangen
 int ISleutel = 3;//aansluiting van de sleutel voor de voordeur
@@ -112,53 +112,53 @@ void loop(){
                VorigTimer = 0;
              break;
             }
-            inData = "";
+            inData = "";  //maak de ingekomen string weer leeg
         }
     }
-    delay(10);
+    delay(10); //korte vertaging om foutloos gegevens in te kunnen lezen
 
   //uitlezen sensoren
+    //elke sensor krijgt zijn eigen plek in de array
   Sensor[0] = digitalRead(SGlas);
   Sensor[1] = digitalRead(SRaam);
   Sensor[2] = digitalRead(SPir);
   Sensor[3] = digitalRead(SLaser);
  //sensoren in de gaten houden
-  char Naam[10];
+  char Naam[10];                             //variabel om de naam van de getriggerde sensor door te sturen
   if (SysteemActief == 1){
-      for (int i=0; i<Aantal; i++){ //arrays vergelijken
-       if ( Vorige[i] > Sensor[i]){ //kijken of de sensor van 1 naar 0 is gegaan
+      for (int i=0; i<Aantal; i++){           //arrays vergelijken
+       if ( Vorige[i] > Sensor[i]){           //kijken of de sensor van 1 naar 0 is gegaan
            //selecteer juiste alarm
            strncpy(Naam, SensorNaam[i], 10); //naam uit de char array omzetten in een char strncpy(varuit, vararray[plaats], aantal plaatsen in varuit)
-           alarm1(Naam);//alleen sensoren doorsturen wanneer ze getriggert worden
+           alarm1(Naam);                    //alleen sensoren doorsturen wanneer ze getriggert worden
            }
         }
-     for (int i=0; i<Aantal; i++){ //array overkopieren
+     for (int i=0; i<Aantal; i++){         //array overkopieren
      Vorige[i] = Sensor[i];
    }
  }
 
 //code voor de sleutel schakelaar
   unsigned long HuidigTimer = millis(); //huidige tijd van de timer
-  boolean Sl;
-  Sl = digitalRead(ISleutel);
+  boolean Sl;                           //onthouden van de huidige stand van de schakelaar
+  Sl = digitalRead(ISleutel);           //huidige stand van de schakelaar toekennen aan het variabel
   if((HuidigTimer - VorigTimer > SchakTimer) && (VorigTimer != 0)) { //timer zonder delay
     VorigTimer = 0;
-    if (SysteemActief == 1){
+    if (SysteemActief == 1){            //systeem deactiveren als die aan staat
       SysteemActief = 0;
     }
-    else if (SysteemActief == 0){
+    else if (SysteemActief == 0){       //systeem actieveren als die uit staat
       SysteemActief = 1;
     }
   }
   
-  if (Sl != Sl2){                 //detecteer of de sleutel van stand verandert
-    if (Sl == false){
-       Serial.println("SL");
-       VorigTimer = HuidigTimer;
-       Serial.println(VorigTimer);
+  if (Sl != Sl2){                     //detecteer of de sleutel van stand verandert
+    if (Sl == false){                 //Wanneer de schakelaar is ingedrukt (schakelaar is altijd hoog)
+       Serial.println("SL");          //stuur de PC dat de sluetelschakelaar omgehaald is
+       VorigTimer = HuidigTimer;      //timers gelijk zetten om te detecteren of er verbinding is met de PC
     }
-     Sl2 = Sl;
-     delay(10);
+     Sl2 = Sl;                       //staat van de schakelaar overkopieren om later te vergelijken
+     delay(10);                      //delay om soepel te schakelen
   }
 }
 
@@ -212,7 +212,7 @@ int gegevensin(String gegevens){
 
     for(int i=0; i<=maxIndex && found<=index; i++){ //gaat de gehele string door maar stop als found>index
       if(data.charAt(i)==separator || i==maxIndex){ //kijkt of het karrakter op pos. i = separator of i = maxIndex(einde van de string)
-          found++;                                  //voorwarden voldaan? ja één splitsing gevonden
+          found++;                                  //voorwarden voldaan? ja Ã©Ã©n splitsing gevonden
           strIndex[0] = strIndex[1]+1;              //slaat op hoe lang het gedeeldte tussen de gekozen spliting is en de volgende (het gekozen antwoord)
           strIndex[1] = (i == maxIndex) ? i+1 : i;  //is i=maxIndex?, ja dan strIndex[1] = i+1, nee dan strIndex=i
       }
@@ -311,4 +311,3 @@ void heartbeat(){ //heartbeat communicatie met de PC
   Serial.println(SysteemActief);//alarm actief ja/nee
 }
 //--------------------------------------------------------------------------------------------------------------------------------
-
