@@ -40,7 +40,7 @@ var
 
 implementation
 
-uses uOpenenGebruikers, uLoggen;
+uses uOpenenGebruikers, uLoggen, uMain;
 
 {$R *.lfm}
 
@@ -96,7 +96,12 @@ begin
   try
     ID := StrToInt(Gebruiker);
 
-    if (GebruikersArray[ID].admin <> '1') then
+    //Als gebruiker zichzelf wil verwijderen, dat kan niet.
+    if (uMain.Ingelogd = GebruikersArray[ID].gebruiker) then
+    begin
+      ShowMessage('Het is niet mogelijk om jezelf te verwijderen.');
+    end
+    else if (GebruikersArray[ID].admin <> '1') then
     begin
       //Loggen
       uLoggen.GegevensLoggen('Gebruiker "' + GebruikersArray[ID].gebruiker +

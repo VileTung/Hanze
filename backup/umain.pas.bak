@@ -172,6 +172,7 @@ begin
           if (Ingelogd = '') then
           begin
             //Het response geven
+            sleep(1000);
             SdpoSerial.WriteData('SL;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
 
             //Timer starten, gebruiker heeft 60 seconden

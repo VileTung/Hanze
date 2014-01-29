@@ -338,3 +338,123 @@
 [29-01-14 10:52:29] Glasbreuk
 [29-01-14 10:52:29] Laser
 [29-01-14 10:53:07] Verbonden
+[29-01-14 11:11:26] Verbonden
+[29-01-14 11:12:25] Heartbeat
+[29-01-14 11:13:25] Heartbeat
+[29-01-14 11:14:25] Heartbeat
+[29-01-14 11:15:25] Heartbeat
+[29-01-14 11:16:25] Heartbeat
+[29-01-14 11:17:25] Heartbeat
+[29-01-14 11:19:24] Verbinding verbroken!
+[29-01-14 11:20:24] Verbinding verbroken!
+[29-01-14 11:21:24] Verbinding verbroken!
+[29-01-14 11:50:01] Verbinding verbroken!
+[29-01-14 11:51:01] Verbinding verbroken!
+[29-01-14 11:52:01] Verbinding verbroken!
+[29-01-14 11:53:44] Verbonden
+[29-01-14 11:53:44] Verbinding verbroken!
+[29-01-14 11:53:46] Verbonden
+[29-01-14 11:54:02] Heartbeat
+[29-01-14 11:55:17] Verbonden
+[29-01-14 11:55:22] Sleutelschakelaar
+[29-01-14 11:56:13] Gebruiker Kevin is ingelogd
+[29-01-14 11:56:16] Heartbeat
+[29-01-14 11:56:23] Systeem geactiveerd
+[29-01-14 11:56:33] Laser
+[29-01-14 11:57:03] Reset
+[29-01-14 11:57:16] Heartbeat
+[29-01-14 11:57:35] Gebruiker "Peter" is gewijzigd
+[29-01-14 11:57:43] Gebruiker "Peter" is verwijderd
+[29-01-14 11:58:00] De gebruiker "Peter" is toegevoegd!
+[29-01-14 11:58:06] PIR
+[29-01-14 11:58:06] Laser
+[29-01-14 11:58:08] PIR
+[29-01-14 11:58:08] PIR
+[29-01-14 11:58:08] Openraam
+[29-01-14 11:58:08] Openraam
+[29-01-14 11:58:08] Openraam
+[29-01-14 11:58:09] Glasbreuk
+[29-01-14 11:58:09] Glasbreuk
+[29-01-14 11:58:09] Glasbreuk
+[29-01-14 11:58:09] Glasbreuk
+[29-01-14 11:58:09] Openraam
+[29-01-14 11:58:09] Openraam
+[29-01-14 11:58:09] Openraam
+[29-01-14 11:58:10] Laser
+[29-01-14 11:58:10] Laser
+[29-01-14 11:58:10] Laser
+[29-01-14 11:58:10] PIR
+[29-01-14 11:58:10] Laser
+[29-01-14 11:58:10] PIR
+[29-01-14 11:58:10] Laser
+[29-01-14 11:58:10] PIR
+[29-01-14 11:58:10] Laser
+[29-01-14 11:58:10] PIR
+[29-01-14 11:59:15] Verbinding verbroken!
+[29-01-14 12:21:13] Verbonden
+[29-01-14 12:21:25] Sleutelschakelaar
+[29-01-14 12:21:30] Laser
+[29-01-14 12:21:30] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:31] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:33] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:34] PIR
+[29-01-14 12:21:54] Reset
+[29-01-14 12:21:57] Systeem gedeactiveerd
+[29-01-14 12:23:40] Verbonden
+[29-01-14 12:23:49] Sleutelschakelaar
+[29-01-14 12:23:50] Activeren mislukt!
+[29-01-14 12:24:04] PIR
+[29-01-14 12:24:39] Heartbeat
+[29-01-14 12:25:00] Reset
+[29-01-14 12:26:30] Verbinding verbroken!
+[29-01-14 12:26:45] Verbonden
+[29-01-14 12:26:50] Sleutelschakelaar
+[29-01-14 12:26:51] Activeren mislukt!
+[29-01-14 12:26:58] Laser
+[29-01-14 12:27:43] Heartbeat
+[29-01-14 12:27:44] Reset
+[29-01-14 12:27:44] Reset
+[29-01-14 12:27:46] Systeem gedeactiveerd
+[29-01-14 12:27:48] Systeem geactiveerd
+[29-01-14 12:29:17] Verbinding verbroken!
+[29-01-14 12:29:33] Verbinding verbroken!
+[29-01-14 12:29:47] Verbonden
+[29-01-14 12:29:54] Sleutelschakelaar
+[29-01-14 12:29:55] Activeren mislukt!
+[29-01-14 12:30:23] Verbonden
+[29-01-14 12:30:48] Verbonden
+[29-01-14 12:30:56] Sleutelschakelaar
+[29-01-14 12:30:57] Activeren mislukt!
+[29-01-14 12:31:47] Heartbeat
+[29-01-14 12:32:05] Sleutelschakelaar
+[29-01-14 12:32:06] Activeren mislukt!
+[29-01-14 12:32:15] Gebruiker Kevin is ingelogd
+[29-01-14 12:32:18] Reset
+[29-01-14 12:32:20] Systeem gedeactiveerd
+[29-01-14 12:32:47] Heartbeat
+[29-01-14 12:33:47] Heartbeat

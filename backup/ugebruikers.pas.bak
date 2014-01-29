@@ -40,7 +40,7 @@ var
 
 implementation
 
-uses uOpenenGebruikers, uLoggen;
+uses uOpenenGebruikers, uLoggen, uMain;
 
 {$R *.lfm}
 
@@ -95,8 +95,11 @@ begin
 
   try
     ID := StrToInt(Gebruiker);
+    if (uMain.Ingelogd = GebruikersArray[ID].gebruiker) then
+    begin
 
-    if (GebruikersArray[ID].admin <> 0) then
+    end
+    else if (GebruikersArray[ID].admin <> '1') then
     begin
       //Loggen
       uLoggen.GegevensLoggen('Gebruiker "' + GebruikersArray[ID].gebruiker +
