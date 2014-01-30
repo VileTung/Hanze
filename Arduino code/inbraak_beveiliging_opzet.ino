@@ -4,6 +4,10 @@ gemaakt door Jorn Claassens
 08-01-2014
 laatste update
 29-01-2014 - 12:47
+
+ingangen moeten altijd hoog zijn.
+het systeem geeft alarm wanneer het systeem actief is en één of meerdere sensoren laag zijn.
+ook de sleutelschakelaar moet altijd hoog zijn. door de schakelaar om te halen wordt de pin laag.
 */
 //ingangen
 int ISleutel = 3;//aansluiting van de sleutel voor de voordeur
@@ -212,7 +216,7 @@ int gegevensin(String gegevens){
 
     for(int i=0; i<=maxIndex && found<=index; i++){ //gaat de gehele string door maar stop als found>index
       if(data.charAt(i)==separator || i==maxIndex){ //kijkt of het karrakter op pos. i = separator of i = maxIndex(einde van de string)
-          found++;                                  //voorwarden voldaan? ja Ã©Ã©n splitsing gevonden
+          found++;                                  //voorwarden voldaan? ja één splitsing gevonden
           strIndex[0] = strIndex[1]+1;              //slaat op hoe lang het gedeeldte tussen de gekozen spliting is en de volgende (het gekozen antwoord)
           strIndex[1] = (i == maxIndex) ? i+1 : i;  //is i=maxIndex?, ja dan strIndex[1] = i+1, nee dan strIndex=i
       }
