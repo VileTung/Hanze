@@ -16,10 +16,10 @@ type
     Btn_Aanmelden: TButton;
     Edit_Gebruikersnaam: TEdit;
     Edit_Wachtwoord: TEdit;
-    Label1: TLabel;
     Lbl_Gebruikersnaam: TLabel;
     Lbl_Wachtwoord: TLabel;
     procedure Btn_AanmeldenClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { private declarations }
@@ -29,6 +29,7 @@ type
 
 var
   AanmeldenFrm: TAanmeldenFrm;
+  stilAlarm: integer;
 
 implementation
 
@@ -42,7 +43,8 @@ procedure TAanmeldenFrm.Btn_AanmeldenClick(Sender: TObject);
 begin
   //Met behulp van een document waar de inloggegevens instaan, gaan we proberen in te loggen!
   if (OpenenGebruiker(ExtractFilePath(Application.ExeName) + 'gebruikers',
-    Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text, False) = 'true') then
+    Edit_Gebruikersnaam.Text, Edit_Wachtwoord.Text, False) = 'true') and
+    (Edit_Gebruikersnaam.Text <> '') and (Edit_Wachtwoord.Text <> '') then
   begin
     //Aangegeven dat ingelog gelukt is
     ShowMessage('Succesvol ingelogd, we gaan over enkele seconden verder.');
@@ -75,7 +77,32 @@ begin
   begin
     //Verkeerde ongeldige gegevens!
     ShowMessage('Ongeldige inloggegevens ingevoerd. Controleer je ingevoerde gegevens en probeer het opnieuw!');
+
+    //Moeten we stil alarm triggeren?
+    if (stilAlarm >= 1) then
+    begin
+      //Reset knop actief maken als gebruiker goed inlogd
+      uMain.StilleAlarm := True;
+
+      //Het (stille) alarm word geactiveerd
+      MainFrm.SdpoSerial.WriteData('ST;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
+
+      //Reset teller
+      stilAlarm := 0;
+    end
+    else
+    begin
+      //Teller +1
+      stilAlarm += 1;
+    end;
   end;
+
+end;
+
+procedure TAanmeldenFrm.FormCreate(Sender: TObject);
+begin
+  //Stil alarm
+  stilAlarm := 0;
 
 end;
 

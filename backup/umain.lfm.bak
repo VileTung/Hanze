@@ -27,40 +27,51 @@ object MainFrm: TMainFrm
     SizeGrip = False
   end
   object Btn_Activeren: TButton
+    AnchorSideBottom.Side = asrBottom
     Left = 8
     Height = 25
     Top = 184
     Width = 96
+    Anchors = [akLeft, akBottom]
     Caption = 'Activeren'
     Enabled = False
     OnClick = Btn_ActiverenClick
     TabOrder = 1
   end
   object Btn_Deactiveren: TButton
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
     Left = 216
     Height = 25
     Top = 184
     Width = 96
+    Anchors = [akBottom]
     Caption = 'Deactiveren'
     Enabled = False
     OnClick = Btn_DeactiverenClick
     TabOrder = 2
   end
   object Btn_Reset: TButton
+    AnchorSideRight.Side = asrCenter
+    AnchorSideBottom.Side = asrBottom
     Left = 104
     Height = 25
     Top = 184
     Width = 110
+    Anchors = [akLeft, akRight, akBottom]
     Caption = 'Resetten'
     Enabled = False
     OnClick = Btn_ResetClick
     TabOrder = 3
   end
   object ListBox_Log: TListBox
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
     Left = 8
     Height = 168
     Top = 8
     Width = 304
+    Anchors = [akTop, akLeft, akRight, akBottom]
     ItemHeight = 0
     TabOrder = 4
   end

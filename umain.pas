@@ -168,13 +168,14 @@ begin
         end;
         'SL': //Sleutelschakelaar
         begin
+          Status := True;
+
+          //Het response geven
+          SdpoSerial.WriteData('SL;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
+
           //Eerst kijken of we niet al ingelogd zijn
           if (Ingelogd = '') then
           begin
-            //Het response geven
-            //sleep(1000);
-            SdpoSerial.WriteData('SL;' + uDateTimeStamp.OnzeDateTimeStamp() + #13#10);
-
             //Timer starten, gebruiker heeft 60 seconden
             Timer_SleutelSchakelaar.Enabled := True;
 
@@ -190,6 +191,8 @@ begin
         end;
         'SA': //Systeem actief
         begin
+          Status := True;
+
           //Loggen
           uLoggen.GegevensLoggen('Systeem geactiveerd');
 
@@ -200,6 +203,8 @@ begin
         end;
         'AM': //Systeem actiever mislukt
         begin
+          Status := True;
+
           //Loggen
           uLoggen.GegevensLoggen('Activeren mislukt!');
 
@@ -208,6 +213,8 @@ begin
         end;
         'SD': //Systeem de-actieveren
         begin
+          Status := True;
+
           //Loggen
           uLoggen.GegevensLoggen('Systeem gedeactiveerd');
 
@@ -218,6 +225,8 @@ begin
         end;
         'AL': //Alarm
         begin
+          Status := True;
+
           //Loggen
           case (gesplitst[4] + gesplitst[5]) of
             'Re':

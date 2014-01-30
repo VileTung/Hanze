@@ -7,6 +7,7 @@ object AanmeldenFrm: TAanmeldenFrm
   Caption = 'Aanmelden'
   ClientHeight = 121
   ClientWidth = 234
+  OnCreate = FormCreate
   LCLVersion = '1.0.12.0'
   object Edit_Gebruikersnaam: TEdit
     Left = 89
@@ -51,13 +52,5 @@ object AanmeldenFrm: TAanmeldenFrm
     Enabled = False
     OnClick = Btn_AanmeldenClick
     TabOrder = 2
-  end
-  object Label1: TLabel
-    Left = 64
-    Height = 16
-    Top = 64
-    Width = 112
-    Caption = 'Sleutelschakelaar: Uit'
-    ParentColor = False
   end
 end
