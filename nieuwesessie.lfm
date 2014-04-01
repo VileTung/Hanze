@@ -1,0 +1,59 @@
+object sessieFrm: TsessieFrm
+  Left = 1023
+  Height = 98
+  Top = 528
+  Width = 166
+  BorderStyle = bsDialog
+  Caption = 'Nieuwe Sessie'
+  ClientHeight = 98
+  ClientWidth = 166
+  LCLVersion = '1.2.0.3'
+  object Lbl_Voornaam: TLabel
+    Left = 16
+    Height = 13
+    Top = 16
+    Width = 55
+    Caption = 'Voornaam: '
+    ParentColor = False
+  end
+  object Lbl_Achternaam: TLabel
+    Left = 8
+    Height = 13
+    Top = 40
+    Width = 65
+    Caption = 'Achternaam: '
+    ParentColor = False
+  end
+  object Edit_Voornaam: TEdit
+    Left = 75
+    Height = 21
+    Top = 8
+    Width = 80
+    TabOrder = 0
+  end
+  object Edit_Achternaam: TEdit
+    Left = 75
+    Height = 21
+    Top = 33
+    Width = 80
+    TabOrder = 1
+  end
+  object Btn_Start: TButton
+    Left = 8
+    Height = 25
+    Top = 64
+    Width = 72
+    Caption = 'Starten'
+    OnClick = Btn_StartClick
+    TabOrder = 2
+  end
+  object Btn_Annuleren: TButton
+    Left = 83
+    Height = 25
+    Top = 64
+    Width = 72
+    Caption = 'Annuleren'
+    OnClick = Btn_AnnulerenClick
+    TabOrder = 3
+  end
+end

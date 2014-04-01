@@ -1,0 +1,29 @@
+object OpenSessieFrm: TOpenSessieFrm
+  Left = 1201
+  Height = 63
+  Top = 528
+  Width = 320
+  BorderStyle = bsDialog
+  Caption = 'Open Sessie'
+  ClientHeight = 63
+  ClientWidth = 320
+  LCLVersion = '1.2.0.3'
+  object CBox_OpenSessies: TComboBox
+    Left = 8
+    Height = 21
+    Top = 8
+    Width = 304
+    ItemHeight = 13
+    TabOrder = 0
+    Text = '*Kies een Sessie*'
+  end
+  object Btn_Start: TButton
+    Left = 8
+    Height = 25
+    Top = 32
+    Width = 304
+    Caption = 'Starten'
+    OnClick = Btn_StartClick
+    TabOrder = 1
+  end
+end
