@@ -137,7 +137,8 @@ procedure TmainFrm.ItemOpenSessieClick(Sender: TObject);
 var
   SR: TSearchRec;
 begin
-  if FindFirst(ExtractFilePath(Application.ExeName) + 'Sessies\*.hart', faAnyFile, SR) = 0 then
+  if FindFirst(ExtractFilePath(Application.ExeName) + 'Sessies\*.hart',
+    faAnyFile, SR) = 0 then
   begin
     repeat
       if (SR.Attr <> faDirectory) then

@@ -55,7 +55,7 @@ begin
     Min := 220;
     Max := 0;
 
-    AssignFile(bestand, ExtractFilePath(Application.ExeName) +'Sessies\'+
+    AssignFile(bestand, ExtractFilePath(Application.ExeName) + 'Sessies\' +
       main.openSessiesArray[CBox_OpenSessies.ItemIndex]);
 
     reset(bestand);

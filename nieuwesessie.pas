@@ -96,7 +96,7 @@ begin
 
     mainFrm.Lbl_Minimaal.Visible := False;
     mainFrm.Lbl_Minimaal.Caption := 'Minimaal: ?';
-    mainFrm.Lbl_Hartslag.Caption := 'Hartslag: ?';
+    mainFrm.Lbl_Hartslag.Caption := 'Hartslag: ? bpm';
 
   end;
 end;

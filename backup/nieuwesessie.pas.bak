@@ -61,9 +61,6 @@ begin
     //Form sluiten
     Close();
 
-    showmessage(ExtractFilePath(Application.ExeName) + 'Sessies\' +
-      main.BestandsNaam + '.hart');
-
     AssignFile(bestand, ExtractFilePath(Application.ExeName) + 'Sessies\' +
       main.BestandsNaam + '.hart');
 

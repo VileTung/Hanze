@@ -90,7 +90,7 @@ begin
     hartslag := '0';
   end;
 
-  Lbl_Hartslag.Caption := 'Hartslag: ' + hartslag;
+  Lbl_Hartslag.Caption := 'Hartslag: ' + hartslag+ ' bpm';
 
   if (bestandsNaam <> '') then
   begin

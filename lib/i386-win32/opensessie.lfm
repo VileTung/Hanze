@@ -22,7 +22,7 @@ object OpenSessieFrm: TOpenSessieFrm
     Height = 25
     Top = 32
     Width = 304
-    Caption = 'Starten'
+    Caption = 'Openen'
     OnClick = Btn_StartClick
     TabOrder = 1
   end

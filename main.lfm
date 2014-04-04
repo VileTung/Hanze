@@ -3,7 +3,7 @@ object mainFrm: TmainFrm
   Height = 555
   Top = 132
   Width = 833
-  Caption = 'mainFrm'
+  Caption = 'Hartslag'
   ClientHeight = 535
   ClientWidth = 833
   Color = clWhite
@@ -14,8 +14,8 @@ object mainFrm: TmainFrm
     Left = 8
     Height = 45
     Top = 56
-    Width = 165
-    Caption = 'Hartslag: ?'
+    Width = 236
+    Caption = 'Hartslag: ? bpm'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -32
